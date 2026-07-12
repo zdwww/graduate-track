@@ -7,11 +7,21 @@ import useAuth from "../../helpers/hooks/useAuth";
 
 const LoginPage = () => {
   const { login, handleLoginInfoChange } = useAuth();
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      await login();
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
         <h1 className={styles.title}>GraduateTrack</h1>
-        <form onSubmit={() => login()} className={styles.form}>
+        <form onSubmit={handleSubmit} className={styles.form}>
           <div className={styles.inputWrapper}>
             <label htmlFor="email">Email: </label>
             <input
