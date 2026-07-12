@@ -10,3 +10,38 @@ content-type: application/json
 GET http://localhost:3000/api/contacts
 content-type: application/json
 
+### Register
+
+POST http://localhost:3000/api/auth/register
+content-type: application/json
+
+{
+    "name": "John Doe",
+    "email": "example@example.com",
+    "password": "test_test"
+}
+
+### Login
+POST http://localhost:3000/api/auth/login
+content-type: application/json
+
+{
+    "name": "John Doe",
+    "email": "example@example.com",
+    "password": "test_test"
+}
+
+### Login
+# @name login
+POST http://localhost:3000/api/auth/login
+content-type: application/json
+
+{
+    "email": "example@example.com",
+    "password": "test_test"
+}
+
+### ME
+GET http://localhost:3000/api/auth/me
+Authorization: Bearer {{login.response.body.token}}
+
