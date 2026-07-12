@@ -1,0 +1,44 @@
+{
+  "name": "project3",
+  "version": "1.0.0",
+  "description": "This is an assignment for project3 of CS5610",
+  "homepage": "https://github.com/zdwww/graduate-track#readme",
+  "bugs": {
+    "url": "https://github.com/zdwww/graduate-track/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zdwww/graduate-track.git"
+  },
+  "license": "MIT",
+  "author": "Shota Togawa, Daiwei Zhang",
+  "type": "module",
+  "scripts": {
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint-staged": "lint-staged",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.4.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-jest": "^29.15.2",
+    "eslint-plugin-prettier": "^5.5.6",
+    "globals": "^17.6.0",
+    "husky": "^9.1.7",
+    "jest": "^30.4.2",
+    "lint-staged": "^17.0.5",
+    "prettier": "^3.8.3"
+  },
+  "lint-staged": {
+    "backend/**/*.js": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "docs/**/*.{js,jsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  }
+}
