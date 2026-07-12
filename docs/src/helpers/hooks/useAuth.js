@@ -12,6 +12,14 @@ import {
 
 const useAuth = () => {
   const [user, setUser] = useState(null);
+  const [loginInfo, setLoginInfo] = useState({
+    email: "",
+    password: "",
+  });
+  const [signupInfo, setSignupInfo] = useState({
+    email: "",
+    password: "",
+  });
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(() => Boolean(getToken()));
 
@@ -31,21 +39,29 @@ const useAuth = () => {
       .finally(() => setLoading(false));
   }, []);
 
-  const login = useCallback(async (body) => {
-    const data = await loginRequest(body);
-    setToken(data.token);
-    setUser(data.user);
-    setIsAuthenticated(true);
-    return data;
-  }, []);
+  const handleLoginInfoChange = (name) => (event) => {
+    setLoginInfo({ ...loginInfo, [name]: event.target.value });
+  };
 
-  const signup = useCallback(async (body) => {
-    const data = await signupRequest(body);
+  const handleSignupInfoChange = (name) => (event) => {
+    setSignupInfo({ ...signupInfo, [name]: event.target.value });
+  };
+
+  const login = async () => {
+    const data = await loginRequest(loginInfo);
     setToken(data.token);
     setUser(data.user);
     setIsAuthenticated(true);
     return data;
-  }, []);
+  };
+
+  const signup = async () => {
+    const data = await signupRequest(signupInfo);
+    setToken(data.token);
+    setUser(data.user);
+    setIsAuthenticated(true);
+    return data;
+  };
 
   const logout = useCallback(() => {
     logoutRequest();
@@ -53,7 +69,17 @@ const useAuth = () => {
     setIsAuthenticated(false);
   }, []);
 
-  return { user, isAuthenticated, loading, login, signup, logout };
+  return {
+    isAuthenticated,
+    loading,
+    loginInfo,
+    user,
+    handleLoginInfoChange,
+    handleSignupInfoChange,
+    login,
+    logout,
+    signup,
+  };
 };
 
 export default useAuth;
