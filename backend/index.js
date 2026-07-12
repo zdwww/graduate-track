@@ -1,17 +1,20 @@
 import express from "express";
+import passport from "passport";
 
+import "./config/passport.js";
 import { connectDB } from "./db.js";
 import applicationsRouter from "./routers/applications.js";
+import authRouter from "./routers/auth.js";
 import contactsRouter from "./routers/contacts.js";
-import usersRouter from "./routers/users.js";
 
 const app = express();
 const PORT = 3000;
 
 app.use(express.json());
+app.use(passport.initialize());
 app.use("/api", applicationsRouter);
+app.use("/api", authRouter);
 app.use("/api", contactsRouter);
-app.use("/api", usersRouter);
 
 connectDB()
   .then(() => {
