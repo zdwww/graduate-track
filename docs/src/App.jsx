@@ -6,7 +6,7 @@ import PublicRoute from "./components/PublicRoutes";
 import { routerPaths } from "./helpers/constants/routes";
 import { AuthProvider } from "./helpers/context/AuthProvider";
 import PrivateRoute from "./components/PrivateRoutes";
-import ApplicationPage from "./pages/ApplicationPage";
+import ProgramsPage from "./pages/ProgramsPage";
 import SignupPage from "./pages/SignupPage";
 
 function App() {
@@ -24,7 +24,7 @@ function App() {
           />
           <Route
             path={routerPaths.application}
-            element={<PrivateRoute component={<ApplicationPage />} />}
+            element={<PrivateRoute component={<ProgramsPage />} />}
           />
         </Routes>
       </BrowserRouter>
