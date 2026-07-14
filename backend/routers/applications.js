@@ -1,9 +1,11 @@
 import express from "express";
 
-import { getApplications } from "../controllers/applications.js";
+import { getAllPrograms, getProgramById } from "../controllers/programs.js";
+import { requireAuth } from "../middleware/auth.js";
 
 const router = express.Router();
 
-router.get("/applications", getApplications);
+router.get("/programs", requireAuth, getAllPrograms);
+router.get("/programs/:programId", requireAuth, getProgramById);
 
 export default router;
