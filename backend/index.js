@@ -3,7 +3,7 @@ import passport from "passport";
 
 import "./config/passport.js";
 import { connectDB } from "./db.js";
-import applicationsRouter from "./routers/applications.js";
+import schoolsRouter from "./routers/schools.js";
 import authRouter from "./routers/auth.js";
 import contactsRouter from "./routers/contacts.js";
 
@@ -31,7 +31,7 @@ app.use((req, res, next) => {
 });
 app.use(express.json());
 app.use(passport.initialize());
-app.use("/api", applicationsRouter);
+app.use("/api", schoolsRouter);
 app.use("/api", authRouter);
 app.use("/api", contactsRouter);
 

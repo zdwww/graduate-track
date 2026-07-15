@@ -1,7 +1,7 @@
 import { MongoClient } from "mongodb";
 
 const uri = process.env.MONGODB_URI || "mongodb://localhost:27017";
-const dbName = process.env.DB_NAME || "bookkeep";
+const dbName = process.env.DB_NAME || "graduate_tracker";
 
 let db;
 

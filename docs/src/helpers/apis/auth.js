@@ -1,28 +1,10 @@
-import { API_BASE } from "../constants/apis";
+import { request } from "./index.js";
 
 const TOKEN_KEY = "authToken";
 
 export const getToken = () => localStorage.getItem(TOKEN_KEY);
 export const setToken = (token) => localStorage.setItem(TOKEN_KEY, token);
 export const clearToken = () => localStorage.removeItem(TOKEN_KEY);
-
-const request = async (path, options = {}) => {
-  const res = await fetch(`${API_BASE}${path}`, {
-    ...options,
-    headers: {
-      "Content-Type": "application/json",
-      ...options.headers,
-    },
-  });
-
-  const data = await res.json().catch(() => null);
-
-  if (!res.ok) {
-    throw new Error(data?.message || "Request failed");
-  }
-
-  return data;
-};
 
 export const login = (body) =>
   request("/auth/login", { method: "POST", body: JSON.stringify(body) });

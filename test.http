@@ -37,11 +37,19 @@ POST http://localhost:3000/api/auth/login
 content-type: application/json
 
 {
-    "email": "example@example.com",
-    "password": "test_test"
+    "email": "test@test.com",
+    "password": "hogehoge"
 }
 
 ### ME
 GET http://localhost:3000/api/auth/me
+Authorization: Bearer {{login.response.body.token}}
+
+### Programs
+GET http://localhost:3000/api/schools
+Authorization: Bearer {{login.response.body.token}}
+
+### Program by Id
+GET http://localhost:3000/api/schools/6a5592867e07ecaf818b1292
 Authorization: Bearer {{login.response.body.token}}
 
