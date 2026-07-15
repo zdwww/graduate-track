@@ -120,3 +120,64 @@
 .error {
   color: #e5484d;
 }
+
+.row {
+  cursor: pointer;
+}
+
+.row:hover {
+  background: var(--accent-bg);
+}
+
+.toggleCell {
+  width: 32px;
+}
+
+.chevron {
+  display: inline-block;
+  font-size: 11px;
+  color: var(--text);
+  transition: transform 0.15s ease;
+}
+
+.chevronOpen {
+  transform: rotate(90deg);
+}
+
+.detailRow td {
+  padding: 0;
+  white-space: normal;
+}
+
+.detailPanel {
+  padding: 20px 24px 24px 56px;
+  background: var(--accent-bg);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.detailField {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 14px;
+  color: var(--text-h);
+}
+
+.detailLabel {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text);
+}
+
+.detailList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
