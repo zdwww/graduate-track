@@ -50,6 +50,17 @@ GET http://localhost:3000/api/schools
 Authorization: Bearer {{login.response.body.token}}
 
 ### Program by Id
-GET http://localhost:3000/api/schools/6a5592867e07ecaf818b1292
+GET http://localhost:3000/api/schools/uiuc-master-of-computer-science-mcs-mcs
 Authorization: Bearer {{login.response.body.token}}
 
+### Create Application
+POST http://localhost:3000/api/application
+content-type: application/json
+Authorization: Bearer {{login.response.body.token}}
+
+{
+    "schoolName": "Carnegie Mellon University", 
+    "programId": "carnegie-mellon-m-s-in-computer-science-ms", 
+    "programName": "M.S. in Computer Science",
+    "deadlines": []
+}

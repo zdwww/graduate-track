@@ -6,6 +6,7 @@ import { connectDB } from "./db.js";
 import schoolsRouter from "./routers/schools.js";
 import authRouter from "./routers/auth.js";
 import contactsRouter from "./routers/contacts.js";
+import applicationsRouter from "./routers/applications.js";
 
 const app = express();
 const PORT = 3000;
@@ -34,6 +35,7 @@ app.use(passport.initialize());
 app.use("/api", schoolsRouter);
 app.use("/api", authRouter);
 app.use("/api", contactsRouter);
+app.use("/api", applicationsRouter);
 
 connectDB()
   .then(() => {
