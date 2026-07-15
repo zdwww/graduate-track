@@ -54,7 +54,7 @@ GET http://localhost:3000/api/schools/uiuc-master-of-computer-science-mcs-mcs
 Authorization: Bearer {{login.response.body.token}}
 
 ### Create Application
-POST http://localhost:3000/api/application
+POST http://localhost:3000/api/applications
 content-type: application/json
 Authorization: Bearer {{login.response.body.token}}
 
@@ -64,3 +64,20 @@ Authorization: Bearer {{login.response.body.token}}
     "programName": "M.S. in Computer Science",
     "deadlines": []
 }
+
+### Get All Applications
+GET http://localhost:3000/api/applications
+Authorization: Bearer {{login.response.body.token}}
+
+### Update Application
+PATCH http://localhost:3000/api/application/6a5730970c2b2ee5d6cd24d4
+content-type: application/json
+Authorization: Bearer {{login.response.body.token}}
+
+{
+    "status": "Applied"
+}
+
+### Delete Application
+DELETE http://localhost:3000/api/application/6a5738509d6d05e027f63179
+Authorization: Bearer {{login.response.body.token}}
