@@ -1,0 +1,36 @@
+.wrapper {
+  width: 100%;
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding: 48px 24px;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  width: 100%;
+  max-width: 720px;
+}
+
+.backLink {
+  display: inline-block;
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.backLink:hover {
+  text-decoration: underline;
+}
+
+.title {
+  font-size: 32px;
+  color: var(--text-h);
+  margin: 0 0 12px;
+}
+
+.status {
+  font-size: 16px;
+  color: var(--text);
+}

@@ -9,6 +9,8 @@ import SchoolsPage from "./pages/SchoolsPage";
 import { routerPaths } from "./helpers/constants/routes";
 import { AuthProvider } from "./helpers/context/AuthProvider";
 import SchoolPage from "./pages/SchoolPage";
+import ApplicationsPage from "./pages/ApplicationsPage";
+import ApplicationEditPage from "./pages/ApplicationEditPage";
 
 function App() {
   return (
@@ -30,6 +32,14 @@ function App() {
           <Route
             path={routerPaths.school}
             element={<PrivateRoute component={<SchoolPage />} />}
+          />
+          <Route
+            path={routerPaths.applications}
+            element={<PrivateRoute component={<ApplicationsPage />} />}
+          />
+          <Route
+            path={routerPaths.applicationEdit}
+            element={<PrivateRoute component={<ApplicationEditPage />} />}
           />
         </Routes>
       </BrowserRouter>
