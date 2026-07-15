@@ -1,17 +1,17 @@
 import styles from "./index.module.css";
 
-import usePrograms from "../../helpers/hooks/usePrograms";
+import useSchools from "../../helpers/hooks/useSchools";
 
-const ProgramsPage = () => {
+const SchoolsPage = () => {
   const {
-    programs,
+    schools,
     loading,
     error,
     page,
     totalPages,
     goToPreviousPage,
     goToNextPage,
-  } = usePrograms();
+  } = useSchools();
 
   if (loading) {
     return (
@@ -32,9 +32,9 @@ const ProgramsPage = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
-        <h1 className={styles.title}>Programs</h1>
-        {programs.length === 0 ? (
-          <p className={styles.empty}>No programs found.</p>
+        <h1 className={styles.title}>schools</h1>
+        {schools.length === 0 ? (
+          <p className={styles.empty}>No schools found.</p>
         ) : (
           <>
             <div className={styles.tableWrapper}>
@@ -48,11 +48,9 @@ const ProgramsPage = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {programs.map((program) => (
+                  {schools.map((program) => (
                     <tr key={program._id}>
-                      <td>
-                        {program.school_id.toUpperCase().replaceAll("-", " ")}
-                      </td>
+                      <td>{program.school_id}</td>
                       <td>{program.program_name}</td>
                       <td>{program.degree}</td>
                       <td>
@@ -91,4 +89,4 @@ const ProgramsPage = () => {
   );
 };
 
-export default ProgramsPage;
+export default SchoolsPage;

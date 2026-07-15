@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { getAllPrograms } from "../apis/programs";
+import { getAllSchools } from "../apis/schools.js";
 
-const usePrograms = () => {
-  const [programs, setPrograms] = useState([]);
+const useSchools = () => {
+  const [schools, setSchools] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [page, setPage] = useState(1);
@@ -11,12 +11,13 @@ const usePrograms = () => {
   useEffect(() => {
     let isMounted = true;
 
-    getAllPrograms({ page })
+    getAllSchools({ page })
       .then((data) => {
         if (!isMounted) {
           return;
         }
-        setPrograms(data.programs);
+        console.log(data);
+        setSchools(data.schools);
         setTotalPages(data.totalPages);
         setError(null);
       })
@@ -45,7 +46,7 @@ const usePrograms = () => {
   };
 
   return {
-    programs,
+    schools,
     loading,
     error,
     page,
@@ -55,4 +56,4 @@ const usePrograms = () => {
   };
 };
 
-export default usePrograms;
+export default useSchools;

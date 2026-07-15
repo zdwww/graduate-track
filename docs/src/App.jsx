@@ -2,12 +2,12 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import LoginPage from "./pages/LoginPage";
 import PublicRoute from "./components/PublicRoutes";
+import PrivateRoute from "./components/PrivateRoutes";
+import SignupPage from "./pages/SignupPage";
+import SchoolsPage from "./pages/SchoolsPage";
 
 import { routerPaths } from "./helpers/constants/routes";
 import { AuthProvider } from "./helpers/context/AuthProvider";
-import PrivateRoute from "./components/PrivateRoutes";
-import ProgramsPage from "./pages/ProgramsPage";
-import SignupPage from "./pages/SignupPage";
 
 function App() {
   return (
@@ -23,8 +23,8 @@ function App() {
             element={<PublicRoute component={<SignupPage />} />}
           />
           <Route
-            path={routerPaths.application}
-            element={<PrivateRoute component={<ProgramsPage />} />}
+            path={routerPaths.schools}
+            element={<PrivateRoute component={<SchoolsPage />} />}
           />
         </Routes>
       </BrowserRouter>

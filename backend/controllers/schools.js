@@ -1,7 +1,7 @@
 import { ObjectId } from "mongodb";
-import { getProgramsCollection } from "../models/Programs.js";
+import { getSchoolsCollection } from "../models/Schools.js";
 
-export const getAllPrograms = async (req, res) => {
+export const getAllSchools = async (req, res) => {
   try {
     const { page = 1, limit = 20 } = req.query;
 
@@ -11,14 +11,14 @@ export const getAllPrograms = async (req, res) => {
     const limitNum = Math.max(1, Math.min(100, parseInt(limit)));
     const skip = (pageNum - 1) * limitNum;
 
-    const collection = getProgramsCollection();
-    const [programs, total] = await Promise.all([
+    const collection = getSchoolsCollection();
+    const [schools, total] = await Promise.all([
       collection.find(query).skip(skip).limit(limitNum).toArray(),
       collection.countDocuments(query),
     ]);
 
     return res.status(200).json({
-      programs,
+      schools,
       total,
       page: pageNum,
       totalPages: Math.ceil(total / limitNum),
@@ -28,9 +28,9 @@ export const getAllPrograms = async (req, res) => {
   }
 };
 
-export const getProgramById = async (req, res) => {
+export const getSchoolById = async (req, res) => {
   try {
-    const program = await getProgramsCollection().findOne({
+    const program = await getSchoolsCollection().findOne({
       _id: new ObjectId(req.params.programId),
     });
     if (!program) {

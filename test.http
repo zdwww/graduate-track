@@ -46,10 +46,10 @@ GET http://localhost:3000/api/auth/me
 Authorization: Bearer {{login.response.body.token}}
 
 ### Programs
-GET http://localhost:3000/api/programs
+GET http://localhost:3000/api/schools
 Authorization: Bearer {{login.response.body.token}}
 
 ### Program by Id
-GET http://localhost:3000/api/programs/6a5592867e07ecaf818b1292
+GET http://localhost:3000/api/schools/6a5592867e07ecaf818b1292
 Authorization: Bearer {{login.response.body.token}}
 
