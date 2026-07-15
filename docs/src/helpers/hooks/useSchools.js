@@ -1,23 +1,24 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { getAllSchools } from "../apis/schools.js";
+
+const PAGE_SIZE = 15;
 
 const useSchools = () => {
   const [schools, setSchools] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [page, setPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
+  const [schoolNameFilter, setSchoolNameFilter] = useState("");
 
   useEffect(() => {
     let isMounted = true;
 
-    getAllSchools({ page })
+    getAllSchools()
       .then((data) => {
         if (!isMounted) {
           return;
         }
-        setSchools(data.schools);
-        setTotalPages(data.totalPages);
+        setSchools(data.schools ?? []);
         setError(null);
       })
       .catch((err) => {
@@ -34,7 +35,36 @@ const useSchools = () => {
     return () => {
       isMounted = false;
     };
-  }, [page]);
+  }, []);
+
+  const rows = useMemo(() => {
+    const term = schoolNameFilter.trim().toLowerCase();
+    const filteredSchools = term
+      ? schools.filter((school) =>
+          school.schoolName?.toLowerCase().includes(term),
+        )
+      : schools;
+
+    return filteredSchools.flatMap((school) =>
+      (school.programs ?? []).map((program) => ({
+        ...program,
+        schoolName: school.schoolName,
+      })),
+    );
+  }, [schools, schoolNameFilter]);
+
+  const totalPages = Math.max(1, Math.ceil(rows.length / PAGE_SIZE));
+  const currentPage = Math.min(page, totalPages);
+
+  const pagedRows = useMemo(() => {
+    const start = (currentPage - 1) * PAGE_SIZE;
+    return rows.slice(start, start + PAGE_SIZE);
+  }, [rows, currentPage]);
+
+  const updateSchoolNameFilter = (value) => {
+    setSchoolNameFilter(value);
+    setPage(1);
+  };
 
   const goToPreviousPage = () => {
     setPage((prev) => Math.max(prev - 1, 1));
@@ -45,11 +75,13 @@ const useSchools = () => {
   };
 
   return {
-    schools,
+    rows: pagedRows,
     loading,
     error,
-    page,
+    page: currentPage,
     totalPages,
+    schoolNameFilter,
+    setSchoolNameFilter: updateSchoolNameFilter,
     goToPreviousPage,
     goToNextPage,
   };

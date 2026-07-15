@@ -4,11 +4,13 @@ import useSchools from "../../helpers/hooks/useSchools";
 
 const SchoolsPage = () => {
   const {
-    schools,
+    rows,
     loading,
     error,
     page,
     totalPages,
+    schoolNameFilter,
+    setSchoolNameFilter,
     goToPreviousPage,
     goToNextPage,
   } = useSchools();
@@ -33,7 +35,14 @@ const SchoolsPage = () => {
     <div className={styles.wrapper}>
       <div className={styles.container}>
         <h1 className={styles.title}>schools</h1>
-        {schools.length === 0 ? (
+        <input
+          type="text"
+          className={styles.filterInput}
+          placeholder="Filter by school name..."
+          value={schoolNameFilter}
+          onChange={(e) => setSchoolNameFilter(e.target.value)}
+        />
+        {rows.length === 0 ? (
           <p className={styles.empty}>No schools found.</p>
         ) : (
           <>
@@ -48,18 +57,16 @@ const SchoolsPage = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {schools.map((school) => {
-                    return school.programs?.map((program) => (
-                      <tr key={program._id}>
-                        <td>{school.schoolName}</td>
-                        <td>{program.programName}</td>
-                        <td>{program.degree}</td>
-                        <td>
-                          <button type="button">+</button>
-                        </td>
-                      </tr>
-                    ));
-                  })}
+                  {rows.map((row) => (
+                    <tr key={row.programId}>
+                      <td>{row.schoolName}</td>
+                      <td>{row.programName}</td>
+                      <td>{row.degree}</td>
+                      <td>
+                        <button type="button">+</button>
+                      </td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>
