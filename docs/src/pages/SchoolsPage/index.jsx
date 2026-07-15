@@ -11,6 +11,7 @@ const SchoolsPage = () => {
     totalPages,
     schoolNameFilter,
     handleRowClick,
+    onClickCreateApplication,
     setSchoolNameFilter,
     goToPreviousPage,
     goToNextPage,
@@ -67,7 +68,12 @@ const SchoolsPage = () => {
                       <td>{row.programName}</td>
                       <td>{row.degree}</td>
                       <td>
-                        <button type="button">+</button>
+                        <button
+                          type="button"
+                          onClick={(e) => onClickCreateApplication(e, row)}
+                        >
+                          +
+                        </button>
                       </td>
                     </tr>
                   ))}
