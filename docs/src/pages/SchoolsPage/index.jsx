@@ -1,5 +1,7 @@
 import styles from "./index.module.css";
 
+import Loading from "../../components/Loading/index.jsx";
+
 import useSchools from "../../helpers/hooks/useSchools.js";
 
 const SchoolsPage = () => {
@@ -19,11 +21,7 @@ const SchoolsPage = () => {
   } = useSchools();
 
   if (loading) {
-    return (
-      <div className={styles.wrapper}>
-        <p className={styles.status}>Loading...</p>
-      </div>
-    );
+    return <Loading />;
   }
 
   if (error) {

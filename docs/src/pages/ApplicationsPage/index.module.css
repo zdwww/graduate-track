@@ -109,7 +109,6 @@
   cursor: not-allowed;
 }
 
-.status,
 .error,
 .empty {
   font-size: 16px;

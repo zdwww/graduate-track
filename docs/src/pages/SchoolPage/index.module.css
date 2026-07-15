@@ -107,7 +107,6 @@
   color: var(--text-h);
 }
 
-.status,
 .error,
 .empty {
   font-size: 16px;

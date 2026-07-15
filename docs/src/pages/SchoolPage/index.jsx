@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
 
 import styles from "./index.module.css";
+
+import Loading from "../../components/Loading/index.jsx";
+
 import useSchool from "../../helpers/hooks/useSchool.js";
 import { routerPaths } from "../../helpers/constants/routes.js";
 
@@ -14,11 +17,7 @@ const SchoolPage = () => {
   const { program, loading, error } = useSchool();
 
   if (loading) {
-    return (
-      <div className={styles.wrapper}>
-        <p className={styles.status}>Loading...</p>
-      </div>
-    );
+    return <Loading />;
   }
 
   if (error) {
