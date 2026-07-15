@@ -48,16 +48,18 @@ const SchoolsPage = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {schools.map((program) => (
-                    <tr key={program._id}>
-                      <td>{program.school_id}</td>
-                      <td>{program.program_name}</td>
-                      <td>{program.degree}</td>
-                      <td>
-                        <button type="button">+</button>
-                      </td>
-                    </tr>
-                  ))}
+                  {schools.map((school) => {
+                    return school.programs?.map((program) => (
+                      <tr key={program._id}>
+                        <td>{school.schoolName}</td>
+                        <td>{program.programName}</td>
+                        <td>{program.degree}</td>
+                        <td>
+                          <button type="button">+</button>
+                        </td>
+                      </tr>
+                    ));
+                  })}
                 </tbody>
               </table>
             </div>

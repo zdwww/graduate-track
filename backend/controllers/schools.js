@@ -12,13 +12,13 @@ export const getAllSchools = async (req, res) => {
     const skip = (pageNum - 1) * limitNum;
 
     const collection = getSchoolsCollection();
-    const [schools, total] = await Promise.all([
+    const [data, total] = await Promise.all([
       collection.find(query).skip(skip).limit(limitNum).toArray(),
       collection.countDocuments(query),
     ]);
 
     return res.status(200).json({
-      schools,
+      schools: data[0].schools,
       total,
       page: pageNum,
       totalPages: Math.ceil(total / limitNum),

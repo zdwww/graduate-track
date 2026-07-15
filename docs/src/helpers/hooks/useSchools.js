@@ -16,7 +16,6 @@ const useSchools = () => {
         if (!isMounted) {
           return;
         }
-        console.log(data);
         setSchools(data.schools);
         setTotalPages(data.totalPages);
         setError(null);
