@@ -2,6 +2,10 @@ import { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
 
 import styles from "./index.module.css";
+
+import Loading from "../../components/Loading/index.jsx";
+import ErrorMessage from "../../components/ErrorMessage/index.jsx";
+
 import useApplications from "../../helpers/hooks/useApplications.js";
 
 const formatDate = (value) => {
@@ -35,19 +39,11 @@ const ApplicationsPage = () => {
   const [expandedId, setExpandedId] = useState(null);
 
   if (loading) {
-    return (
-      <div className={styles.wrapper}>
-        <p className={styles.status}>Loading...</p>
-      </div>
-    );
+    return <Loading />;
   }
 
   if (error) {
-    return (
-      <div className={styles.wrapper}>
-        <p className={styles.error}>{error}</p>
-      </div>
-    );
+    return <ErrorMessage error={error} />;
   }
 
   const toggleExpanded = (applicationId) => {
