@@ -30,6 +30,12 @@ export function getAllApplications() {
   return getApplicationsCollection().find().toArray();
 }
 
+export function getApplicationById(applicationId) {
+  return getApplicationsCollection().findOne({
+    _id: new ObjectId(applicationId),
+  });
+}
+
 export function updateApplicationById(applicationId, updates) {
   return getApplicationsCollection().findOneAndUpdate(
     { _id: new ObjectId(applicationId) },

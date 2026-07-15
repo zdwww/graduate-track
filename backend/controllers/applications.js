@@ -1,6 +1,7 @@
 import {
   createUser,
   getAllApplications,
+  getApplicationById,
   updateApplicationById,
   deleteApplicationById,
 } from "../models/Applications.js";
@@ -22,6 +23,19 @@ export const getApplications = async (req, res) => {
   try {
     const applications = await getAllApplications();
     return res.status(200).json({ applications });
+  } catch (e) {
+    return res.status(400).json({ error: e.message });
+  }
+};
+
+export const getApplication = async (req, res) => {
+  try {
+    const { applicationId } = req.params;
+    const application = await getApplicationById(applicationId);
+    if (!application) {
+      return res.status(404).json({ error: "Application not found" });
+    }
+    return res.status(200).json({ application });
   } catch (e) {
     return res.status(400).json({ error: e.message });
   }
