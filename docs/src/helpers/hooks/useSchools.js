@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getAllSchools } from "../apis/schools.js";
+import { createApplication } from "../apis/applications.js";
 
 const PAGE_SIZE = 15;
 
@@ -41,6 +42,16 @@ const useSchools = () => {
 
   const handleRowClick = (programId) => {
     navigate(`/${programId}`);
+  };
+
+  const onClickCreateApplication = async (e, program) => {
+    e.stopPropagation();
+    await createApplication({
+      schoolName: program.schoolName,
+      programId: program.programId,
+      programName: program.programName,
+      deadlines: program.deadlines,
+    });
   };
 
   const rows = useMemo(() => {
@@ -88,6 +99,7 @@ const useSchools = () => {
     totalPages,
     schoolNameFilter,
     handleRowClick,
+    onClickCreateApplication,
     setSchoolNameFilter: updateSchoolNameFilter,
     goToPreviousPage,
     goToNextPage,
