@@ -6,6 +6,6 @@ import { requireAuth } from "../middleware/auth.js";
 const router = express.Router();
 
 router.get("/schools", requireAuth, getAllSchools);
-router.get("/schools/:schoolId", requireAuth, getSchoolById);
+router.get("/schools/:programId", requireAuth, getSchoolById);
 
 export default router;

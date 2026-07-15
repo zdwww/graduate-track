@@ -1,13 +1,9 @@
-import { ObjectId } from "mongodb";
 import { getSchoolsCollection } from "../models/Schools.js";
 
 export const getAllSchools = async (req, res) => {
   try {
     const collection = getSchoolsCollection();
-    const [data, total] = await Promise.all([
-      collection.find().toArray(),
-      collection.countDocuments(),
-    ]);
+    const [data, total] = await Promise.all([collection.find().toArray()]);
 
     return res.status(200).json({
       schools: data[0].schools,
@@ -20,13 +16,15 @@ export const getAllSchools = async (req, res) => {
 
 export const getSchoolById = async (req, res) => {
   try {
-    const program = await getSchoolsCollection().findOne({
-      _id: new ObjectId(req.params.programId),
+    const collection = getSchoolsCollection();
+    const [data] = await Promise.all([collection.find().toArray()]);
+    const programs = data[0].schools.flatMap((school) =>
+      (school.programs ?? []).map((program) => ({ ...program })),
+    );
+    const program = programs.filter((program) => {
+      return program.programId == req.params.programId;
     });
-    if (!program) {
-      return res.status(404).json({ error: "Program not found" });
-    }
-    return res.status(200).json(program);
+    return res.status(200).json({ program });
   } catch (e) {
     return res.status(400).json({ error: e.message });
   }
