@@ -176,7 +176,6 @@
   cursor: not-allowed;
 }
 
-.error,
 .empty {
   font-size: 16px;
   text-align: center;
@@ -186,8 +185,4 @@
   font-size: 14px;
   color: var(--text);
   padding: 0;
-}
-
-.error {
-  color: #e5484d;
 }

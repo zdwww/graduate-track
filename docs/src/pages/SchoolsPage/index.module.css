@@ -85,15 +85,10 @@
   font-size: 15px;
 }
 
-.error,
 .empty {
   font-size: 16px;
   padding: 48px 0;
   text-align: center;
-}
-
-.error {
-  color: #e5484d;
 }
 
 .createButton {

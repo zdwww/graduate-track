@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 
 import styles from "./index.module.css";
 
+import ErrorMessage from "../../components/ErrorMessage/index.jsx";
 import Loading from "../../components/Loading/index.jsx";
 
 import useApplicationEdit from "../../helpers/hooks/useApplicationEdit.js";
@@ -32,11 +33,7 @@ const ApplicationEditPage = () => {
   }
 
   if (error) {
-    return (
-      <div className={styles.wrapper}>
-        <p className={styles.error}>{error}</p>
-      </div>
-    );
+    return <ErrorMessage error={error} />;
   }
 
   if (!application) {

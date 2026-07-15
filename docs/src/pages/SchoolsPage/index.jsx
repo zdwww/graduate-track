@@ -3,6 +3,7 @@ import styles from "./index.module.css";
 import Loading from "../../components/Loading/index.jsx";
 
 import useSchools from "../../helpers/hooks/useSchools.js";
+import ErrorMessage from "../../components/ErrorMessage/index.jsx";
 
 const SchoolsPage = () => {
   const {
@@ -25,11 +26,7 @@ const SchoolsPage = () => {
   }
 
   if (error) {
-    return (
-      <div className={styles.wrapper}>
-        <p className={styles.error}>{error}</p>
-      </div>
-    );
+    return <ErrorMessage error={error} />;
   }
 
   return (
