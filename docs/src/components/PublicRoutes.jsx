@@ -6,11 +6,7 @@ import useAuth from "../helpers/hooks/useAuth";
 
 const PublicRoute = ({ component }) => {
   const { isAuthenticated } = useAuth();
-  return isAuthenticated ? (
-    <Navigate to={routerPaths.application} />
-  ) : (
-    component
-  );
+  return isAuthenticated ? <Navigate to={routerPaths.schools} /> : component;
 };
 
 PublicRoute.propTypes = {

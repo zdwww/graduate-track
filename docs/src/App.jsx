@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import PublicRoute from "./components/PublicRoutes";
 import PrivateRoute from "./components/PrivateRoutes";
+import Navigation from "./components/Navigation";
 import SignupPage from "./pages/SignupPage";
 import SchoolsPage from "./pages/SchoolsPage";
 
@@ -16,6 +17,7 @@ function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
+        <Navigation />
         <Routes>
           <Route
             path={routerPaths.login}
