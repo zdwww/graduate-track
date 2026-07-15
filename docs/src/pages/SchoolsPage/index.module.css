@@ -68,6 +68,7 @@
 
 .table tbody tr {
   border-bottom: 1px solid var(--border);
+  cursor: pointer;
   transition: background-color 0.15s ease;
 }
 
@@ -94,6 +95,37 @@
 
 .error {
   color: #e5484d;
+}
+
+.createButton {
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  border-radius: 8px;
+  border: 1px solid var(--accent-border);
+  background: var(--accent-bg);
+  color: var(--accent);
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease,
+    opacity 0.15s ease;
+}
+
+.createButton:hover:not(:disabled) {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.createButton:disabled {
+  background: transparent;
+  border-color: var(--border);
+  color: var(--text);
+  cursor: default;
+  opacity: 0.7;
 }
 
 .pagination {

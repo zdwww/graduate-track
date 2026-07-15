@@ -12,6 +12,7 @@ const SchoolsPage = () => {
     schoolNameFilter,
     handleRowClick,
     onClickCreateApplication,
+    creatingProgramId,
     setSchoolNameFilter,
     goToPreviousPage,
     goToNextPage,
@@ -70,9 +71,18 @@ const SchoolsPage = () => {
                       <td>
                         <button
                           type="button"
+                          className={styles.createButton}
                           onClick={(e) => onClickCreateApplication(e, row)}
+                          disabled={
+                            row.hasApplication ||
+                            creatingProgramId === row.programId
+                          }
                         >
-                          +
+                          {row.hasApplication
+                            ? "Added"
+                            : creatingProgramId === row.programId
+                              ? "Adding..."
+                              : "+ Add"}
                         </button>
                       </td>
                     </tr>
