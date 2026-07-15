@@ -8,6 +8,7 @@ import SchoolsPage from "./pages/SchoolsPage";
 
 import { routerPaths } from "./helpers/constants/routes";
 import { AuthProvider } from "./helpers/context/AuthProvider";
+import SchoolPage from "./pages/SchoolPage";
 
 function App() {
   return (
@@ -25,6 +26,10 @@ function App() {
           <Route
             path={routerPaths.schools}
             element={<PrivateRoute component={<SchoolsPage />} />}
+          />
+          <Route
+            path={routerPaths.school}
+            element={<PrivateRoute component={<SchoolPage />} />}
           />
         </Routes>
       </BrowserRouter>

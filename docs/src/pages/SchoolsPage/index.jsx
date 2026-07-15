@@ -1,6 +1,6 @@
 import styles from "./index.module.css";
 
-import useSchools from "../../helpers/hooks/useSchools";
+import useSchools from "../../helpers/hooks/useSchools.js";
 
 const SchoolsPage = () => {
   const {
@@ -10,6 +10,7 @@ const SchoolsPage = () => {
     page,
     totalPages,
     schoolNameFilter,
+    handleRowClick,
     setSchoolNameFilter,
     goToPreviousPage,
     goToNextPage,
@@ -34,7 +35,7 @@ const SchoolsPage = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
-        <h1 className={styles.title}>schools</h1>
+        <h1 className={styles.title}>Schools</h1>
         <input
           type="text"
           className={styles.filterInput}
@@ -58,7 +59,10 @@ const SchoolsPage = () => {
                 </thead>
                 <tbody>
                   {rows.map((row) => (
-                    <tr key={row.programId}>
+                    <tr
+                      key={row.programId}
+                      onClick={() => handleRowClick(row.programId)}
+                    >
                       <td>{row.schoolName}</td>
                       <td>{row.programName}</td>
                       <td>{row.degree}</td>

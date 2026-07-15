@@ -1,9 +1,11 @@
 import { useEffect, useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { getAllSchools } from "../apis/schools.js";
 
 const PAGE_SIZE = 15;
 
 const useSchools = () => {
+  const navigate = useNavigate();
   const [schools, setSchools] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -36,6 +38,10 @@ const useSchools = () => {
       isMounted = false;
     };
   }, []);
+
+  const handleRowClick = (programId) => {
+    navigate(`/${programId}`);
+  };
 
   const rows = useMemo(() => {
     const term = schoolNameFilter.trim().toLowerCase();
@@ -81,6 +87,7 @@ const useSchools = () => {
     page: currentPage,
     totalPages,
     schoolNameFilter,
+    handleRowClick,
     setSchoolNameFilter: updateSchoolNameFilter,
     goToPreviousPage,
     goToNextPage,
