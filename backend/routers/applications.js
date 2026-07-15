@@ -1,13 +1,20 @@
 import express from "express";
 
-import { createApplication } from "../controllers/applications.js";
+import {
+  createApplication,
+  getApplications,
+  getApplication,
+  updateApplication,
+  deleteApplication,
+} from "../controllers/applications.js";
 import { requireAuth } from "../middleware/auth.js";
 
 const router = express.Router();
 
-// router.get("/application/:id", requireAuth, getAllSchools);
+router.get("/applications", requireAuth, getApplications);
 router.post("/applications", requireAuth, createApplication);
-// router.patch("/application/:id", requireAuth, getAllSchools);
-// router.delete("/application/:id", requireAuth, getAllSchools);
+router.get("/application/:applicationId", requireAuth, getApplication);
+router.patch("/application/:applicationId", requireAuth, updateApplication);
+router.delete("/application/:applicationId", requireAuth, deleteApplication);
 
 export default router;
