@@ -1,27 +1,36 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getAllSchools } from "../apis/schools.js";
-import { createApplication } from "../apis/applications.js";
+import { createApplication, getAllApplications } from "../apis/applications.js";
 
 const PAGE_SIZE = 15;
 
 const useSchools = () => {
   const navigate = useNavigate();
   const [schools, setSchools] = useState([]);
+  const [appliedProgramIds, setAppliedProgramIds] = useState(new Set());
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [page, setPage] = useState(1);
   const [schoolNameFilter, setSchoolNameFilter] = useState("");
+  const [creatingProgramId, setCreatingProgramId] = useState(null);
 
   useEffect(() => {
     let isMounted = true;
 
-    getAllSchools()
-      .then((data) => {
+    Promise.all([getAllSchools(), getAllApplications()])
+      .then(([schoolsData, applicationsData]) => {
         if (!isMounted) {
           return;
         }
-        setSchools(data.schools ?? []);
+        setSchools(schoolsData.schools ?? []);
+        setAppliedProgramIds(
+          new Set(
+            (applicationsData.applications ?? []).map(
+              (application) => application.programId,
+            ),
+          ),
+        );
         setError(null);
       })
       .catch((err) => {
@@ -46,12 +55,24 @@ const useSchools = () => {
 
   const onClickCreateApplication = async (e, program) => {
     e.stopPropagation();
-    await createApplication({
-      schoolName: program.schoolName,
-      programId: program.programId,
-      programName: program.programName,
-      deadlines: program.deadlines,
-    });
+    if (appliedProgramIds.has(program.programId)) {
+      return;
+    }
+    setCreatingProgramId(program.programId);
+    try {
+      await createApplication({
+        schoolName: program.schoolName,
+        programId: program.programId,
+        programName: program.programName,
+        deadlines: program.deadlines,
+      });
+      setAppliedProgramIds((prev) => new Set(prev).add(program.programId));
+      setError(null);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setCreatingProgramId(null);
+    }
   };
 
   const rows = useMemo(() => {
@@ -66,9 +87,10 @@ const useSchools = () => {
       (school.programs ?? []).map((program) => ({
         ...program,
         schoolName: school.schoolName,
+        hasApplication: appliedProgramIds.has(program.programId),
       })),
     );
-  }, [schools, schoolNameFilter]);
+  }, [schools, schoolNameFilter, appliedProgramIds]);
 
   const totalPages = Math.max(1, Math.ceil(rows.length / PAGE_SIZE));
   const currentPage = Math.min(page, totalPages);
@@ -100,6 +122,7 @@ const useSchools = () => {
     schoolNameFilter,
     handleRowClick,
     onClickCreateApplication,
+    creatingProgramId,
     setSchoolNameFilter: updateSchoolNameFilter,
     goToPreviousPage,
     goToNextPage,
