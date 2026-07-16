@@ -1,0 +1,72 @@
+name: Deploy frontend to Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: docs/package-lock.json
+
+      - name: Install
+        run: npm ci
+        working-directory: docs
+
+      - name: Build
+        run: npm run build
+        working-directory: docs
+
+      # The build succeeds even if API_BASE is still a placeholder, which would
+      # ship a green CI and a dead site. Fail loudly instead.
+      - name: Guard - the production API base must be in the bundle
+        working-directory: docs
+        run: |
+          if grep -rq "TODO: set production env" dist; then
+            echo "::error::apis.js placeholder reached the bundle - see helpers/constants/apis.js"
+            exit 1
+          fi
+          if ! grep -rq "onrender.com/api" dist; then
+            echo "::error::no Render API URL in the bundle - see helpers/constants/apis.js"
+            exit 1
+          fi
+
+      # Pages has no rewrite engine, so /graduate-track/applications would 404.
+      # Serving the built index.html as 404.html lets the SPA boot and route.
+      - name: SPA fallback
+        run: cp docs/dist/index.html docs/dist/404.html
+
+      - uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

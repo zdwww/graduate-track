@@ -3,4 +3,4 @@ const isLocal =
 
 export const API_BASE = isLocal
   ? "http://localhost:3000/api"
-  : "TODO: set production env";
+  : "https://graduate-track-api.onrender.com/api";
