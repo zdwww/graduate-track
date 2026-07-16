@@ -6,10 +6,6 @@ content-type: application/json
 GET http://localhost:3000/api/applications
 content-type: application/json
 
-### GET
-GET http://localhost:3000/api/contacts
-content-type: application/json
-
 ### Register
 
 POST http://localhost:3000/api/auth/register
@@ -80,4 +76,45 @@ Authorization: Bearer {{login.response.body.token}}
 
 ### Delete Application
 DELETE http://localhost:3000/api/application/6a5738509d6d05e027f63179
+Authorization: Bearer {{login.response.body.token}}
+
+### Create Contact
+# @name createContact
+POST http://localhost:3000/api/contacts
+content-type: application/json
+Authorization: Bearer {{login.response.body.token}}
+
+{
+    "applicationId": "6a5850daf5c39d30c2446492",
+    "name": "Dr. Jane Smith",
+    "school": "Carnegie Mellon University",
+    "role": "Professor",
+    "email": "jsmith@cmu.edu",
+    "notes": "Met at the fall open house"
+}
+
+### Get All My Contacts
+GET http://localhost:3000/api/contacts
+Authorization: Bearer {{login.response.body.token}}
+
+### Get Contacts For One Application
+GET http://localhost:3000/api/contacts?applicationId=6a5850daf5c39d30c2446492
+Authorization: Bearer {{login.response.body.token}}
+
+### Get Contact by Id
+GET http://localhost:3000/api/contact/{{createContact.response.body.contact._id}}
+Authorization: Bearer {{login.response.body.token}}
+
+### Update Contact
+PATCH http://localhost:3000/api/contact/{{createContact.response.body.contact._id}}
+content-type: application/json
+Authorization: Bearer {{login.response.body.token}}
+
+{
+    "role": "Associate Professor",
+    "notes": "Followed up by email"
+}
+
+### Delete Contact
+DELETE http://localhost:3000/api/contact/{{createContact.response.body.contact._id}}
 Authorization: Bearer {{login.response.body.token}}
