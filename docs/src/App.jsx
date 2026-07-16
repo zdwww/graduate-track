@@ -16,7 +16,7 @@ import ApplicationEditPage from "./pages/ApplicationEditPage";
 function App() {
   return (
     <AuthProvider>
-      <BrowserRouter>
+      <BrowserRouter basename={import.meta.env.BASE_URL}>
         <Navigation />
         <Routes>
           <Route
