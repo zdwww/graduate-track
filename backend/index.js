@@ -11,7 +11,8 @@ import applicationsRouter from "./routers/applications.js";
 const app = express();
 const PORT = 3000;
 
-const ALLOWED_ORIGINS = ["http://localhost:5174"]; // TODO: add production url here
+// Origins only — a browser's Origin header never includes a path.
+const ALLOWED_ORIGINS = ["http://localhost:5174", "https://zdwww.github.io"];
 
 app.use((req, res, next) => {
   const { origin } = req.headers;
