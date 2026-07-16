@@ -7,6 +7,7 @@ import schoolsRouter from "./routers/schools.js";
 import authRouter from "./routers/auth.js";
 import contactsRouter from "./routers/contacts.js";
 import applicationsRouter from "./routers/applications.js";
+import facultyRouter from "./routers/faculty.js";
 
 const app = express();
 const PORT = 3000;
@@ -37,6 +38,7 @@ app.use("/api", schoolsRouter);
 app.use("/api", authRouter);
 app.use("/api", contactsRouter);
 app.use("/api", applicationsRouter);
+app.use("/api", facultyRouter);
 
 connectDB()
   .then(() => {

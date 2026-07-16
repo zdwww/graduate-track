@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 import styles from "./index.module.css";
 
@@ -9,7 +9,12 @@ const EMPTY_CONTACT = {
   role: "",
   email: "",
   notes: "",
+  facultyId: null,
+  researchAreas: [],
+  profileUrl: null,
 };
+
+const facultyLabel = (f) => (f.title ? `${f.name} — ${f.title}` : f.name);
 
 const ContactForm = ({
   initialValues = null,
@@ -17,12 +22,44 @@ const ContactForm = ({
   saving = false,
   onSubmit,
   onCancel = null,
+  faculty = [],
+  schoolName = "",
 }) => {
   const [values, setValues] = useState({ ...EMPTY_CONTACT, ...initialValues });
+  const [facultyQuery, setFacultyQuery] = useState("");
+
+  const facultyByLabel = useMemo(() => {
+    const map = new Map();
+    faculty.forEach((f) => {
+      const label = facultyLabel(f);
+      if (!map.has(label)) {
+        map.set(label, f);
+      }
+    });
+    return map;
+  }, [faculty]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
     setValues((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleFacultyPick = (event) => {
+    const label = event.target.value;
+    setFacultyQuery(label);
+    const picked = facultyByLabel.get(label);
+    if (picked) {
+      setValues((prev) => ({
+        ...prev,
+        name: picked.name,
+        role: picked.title ?? "",
+        school: schoolName,
+        email: picked.publicEmail ?? "",
+        facultyId: picked.facultyId ?? null,
+        researchAreas: picked.researchAreas ?? [],
+        profileUrl: picked.profileUrl ?? null,
+      }));
+    }
   };
 
   const handleSubmit = async (event) => {
@@ -30,11 +67,35 @@ const ContactForm = ({
     const succeeded = await onSubmit(values);
     if (succeeded && !initialValues) {
       setValues(EMPTY_CONTACT);
+      setFacultyQuery("");
     }
   };
 
+  const showFacultyPicker = !initialValues && faculty.length > 0;
+
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
+      {showFacultyPicker && (
+        <label className={styles.facultyPicker}>
+          <span className={styles.label}>
+            Pick from this school&apos;s faculty
+          </span>
+          <input
+            className={styles.input}
+            type="text"
+            list="faculty-options"
+            value={facultyQuery}
+            onChange={handleFacultyPick}
+            placeholder="Search a professor by name…"
+          />
+          <datalist id="faculty-options">
+            {faculty.map((f) => (
+              <option key={f.facultyId} value={facultyLabel(f)} />
+            ))}
+          </datalist>
+        </label>
+      )}
+
       <div className={styles.fields}>
         <label className={styles.field}>
           <span className={styles.label}>Name *</span>
@@ -124,6 +185,17 @@ ContactForm.propTypes = {
   saving: PropTypes.bool,
   onSubmit: PropTypes.func.isRequired,
   onCancel: PropTypes.func,
+  faculty: PropTypes.arrayOf(
+    PropTypes.shape({
+      facultyId: PropTypes.string,
+      name: PropTypes.string,
+      title: PropTypes.string,
+      researchAreas: PropTypes.arrayOf(PropTypes.string),
+      profileUrl: PropTypes.string,
+      publicEmail: PropTypes.string,
+    }),
+  ),
+  schoolName: PropTypes.string,
 };
 
 export default ContactForm;
