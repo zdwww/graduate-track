@@ -1,8 +1,8 @@
 # Design Doc
 
-*Project 3 Name*: GraduateTrack — A Graduate School Application Tracker
+_Project 3 Name_: GraduateTrack — A Graduate School Application Tracker
 
-*Team Members*: Shota Togawa, Daiwei Zhang
+_Team Members_: Shota Togawa, Daiwei Zhang
 
 ## Description:
 
@@ -12,10 +12,10 @@ For this project scope, the application will focus on persistent CRUD functional
 ## User Personas:
 
 1. Emily, The Graduate School Applicant
-Emily is a senior undergraduate student applying to dozens of graduate schools. She wants to securely manage all of her applications, interview schedules, and networking contacts in one place.
+   Emily is a senior undergraduate student applying to dozens of graduate schools. She wants to securely manage all of her applications, interview schedules, and networking contacts in one place.
 
 2. Kevin, The Graduate School Applicant
-Kevin is preparing applications for multiple master's programs. He wants to track deadlines, admission progress, and conversations with professors while keeping his data private through a personal account.
+   Kevin is preparing applications for multiple master's programs. He wants to track deadlines, admission progress, and conversations with professors while keeping his data private through a personal account.
 
 ## User Stories:
 
@@ -41,22 +41,25 @@ Kevin is preparing applications for multiple master's programs. He wants to trac
 - As a user, I want to delete a contact, so I can remove outdated or incorrect networking information.
 
 ## Work Division:
+
 **Shota Togawa** — Applications Management Feature,
 
 - Full Stack:
-    - Frontend: Schools/programs catalog with search and pagination, program detail page, applications list with expandable rows, application edit form, and authentication pages (login/signup).
-    - Backend & Database: Express API routes for Auth, Schools, and the Applications collection, including create, read, update, delete, and JWT-based auth middleware.
+  - Frontend: Schools/programs catalog with search and pagination, program detail page, applications list with expandable rows, application edit form, and authentication pages (login/signup).
+  - Backend & Database: Express API routes for Auth, Schools, and the Applications collection, including create, read, update, delete, and JWT-based auth middleware.
 
 **Daiwei Zhang** — Contacts Management Feature,
+
 - Full Stack:
-    - Frontend: Contacts section on the application detail view, add/edit contact form, and contact delete controls.
-    - Backend & Database: Express API routes for the Contacts collection, including create, read, update, and delete operations scoped to a user and linked to an application by `applicationId`.
+  - Frontend: Contacts section on the application detail view, add/edit contact form, and contact delete controls.
+  - Backend & Database: Express API routes for the Contacts collection, including create, read, update, and delete operations scoped to a user and linked to an application by `applicationId`.
 
 ### Shared Responsibilities:
 
 Homepage/navigation, MongoDB Atlas setup, project structure, ESLint/Prettier configuration, README, deployment, and demo video.
 
 ### Tech Stack:
+
 - Frontend: React 19 with Hooks, React Router, Vite
 - Backend: Node.js + Express
 - Database: MongoDB using the native MongoDB Node.js driver
@@ -64,4 +67,5 @@ Homepage/navigation, MongoDB Atlas setup, project structure, ESLint/Prettier con
 - Data Requests: Fetch API
 
 ### Desing Mock
+
 ![mock desing](./public/images/mock_design.jpg)

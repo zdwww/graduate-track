@@ -1,64 +1,64 @@
 .wrapper {
-    width: 100%;
+  width: 100%;
 }
 
 .container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .title {
-    font-size: 40px;
+  font-size: 40px;
 }
 
 .form {
-    width: 400px;
-    display: flex;
+  width: 400px;
+  display: flex;
 
-    flex-direction: column;
+  flex-direction: column;
 }
 
 .inputWrapper {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .input {
-    height: 28px;
-    font-size: 16px;
-    padding: 4px 8px;
+  height: 28px;
+  font-size: 16px;
+  padding: 4px 8px;
 }
 
 .formMargin {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 .button {
-    width: 100%;
-    margin-top: 30px;
-    height: 40px;
+  width: 100%;
+  margin-top: 30px;
+  height: 40px;
 }
 
 .button:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .error {
-    margin-top: 16px;
-    color: #d32f2f;
-    font-size: 14px;
-    text-align: center;
+  margin-top: 16px;
+  color: #d32f2f;
+  font-size: 14px;
+  text-align: center;
 }
 
 .signup {
-    padding-top: 20px;
-    align-self: flex-end;
-    text-decoration: none;
+  padding-top: 20px;
+  align-self: flex-end;
+  text-decoration: none;
 }

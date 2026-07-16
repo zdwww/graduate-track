@@ -31,13 +31,13 @@ A graduate school application tracker that helps applicants browse programs, tra
 
 ## Tech Stack
 
-| Layer | Technology |
-|---|---|
-| Frontend | React 19 (Hooks, React Router), Vite |
-| Backend | Node.js, Express 5 |
-| Database | MongoDB (native driver) |
-| Auth | Passport (local + JWT strategies), bcrypt |
-| Hosting | GitHub Pages (frontend) · Render (backend) |
+| Layer    | Technology                                 |
+| -------- | ------------------------------------------ |
+| Frontend | React 19 (Hooks, React Router), Vite       |
+| Backend  | Node.js, Express 5                         |
+| Database | MongoDB (native driver)                    |
+| Auth     | Passport (local + JWT strategies), bcrypt  |
+| Hosting  | GitHub Pages (frontend) · Render (backend) |
 
 ## Project Structure
 
@@ -117,11 +117,11 @@ The frontend auto-detects `localhost` and points API requests to `http://localho
 
 Set these in `backend/.env` (see `backend/.env.sample`):
 
-| Variable | Default | Description |
-|---|---|---|
-| `MONGODB_URI` | `mongodb://localhost:27017` | MongoDB connection string |
-| `DB_NAME` | `graduate_tracker` | Database name |
-| `JWT_SECRET` | — | Secret used to sign auth JWTs (required) |
+| Variable      | Default                     | Description                              |
+| ------------- | --------------------------- | ---------------------------------------- |
+| `MONGODB_URI` | `mongodb://localhost:27017` | MongoDB connection string                |
+| `DB_NAME`     | `graduate_tracker`          | Database name                            |
+| `JWT_SECRET`  | —                           | Secret used to sign auth JWTs (required) |
 
 ## Usage
 
@@ -144,38 +144,38 @@ All endpoints except `/auth/register` and `/auth/login` require an `Authorizatio
 
 ### Auth
 
-| Method | Endpoint | Description |
-|---|---|---|
-| `POST` | `/auth/register` | Create an account (`name`, `email`, `password`) |
-| `POST` | `/auth/login` | Log in with `email` and `password`, returns a JWT |
-| `GET` | `/auth/me` | Get the current authenticated user |
+| Method | Endpoint         | Description                                       |
+| ------ | ---------------- | ------------------------------------------------- |
+| `POST` | `/auth/register` | Create an account (`name`, `email`, `password`)   |
+| `POST` | `/auth/login`    | Log in with `email` and `password`, returns a JWT |
+| `GET`  | `/auth/me`       | Get the current authenticated user                |
 
 ### Schools
 
-| Method | Endpoint | Description |
-|---|---|---|
-| `GET` | `/schools` | List programs in the school catalog |
-| `GET` | `/schools/:programId` | Get a single program by ID |
+| Method | Endpoint              | Description                         |
+| ------ | --------------------- | ----------------------------------- |
+| `GET`  | `/schools`            | List programs in the school catalog |
+| `GET`  | `/schools/:programId` | Get a single program by ID          |
 
 ### Applications
 
-| Method | Endpoint | Description |
-|---|---|---|
-| `GET` | `/applications` | List applications |
-| `POST` | `/applications` | Create an application from a program |
-| `GET` | `/application/:applicationId` | Get a single application |
-| `PATCH` | `/application/:applicationId` | Update an application |
-| `DELETE` | `/application/:applicationId` | Delete an application |
+| Method   | Endpoint                      | Description                          |
+| -------- | ----------------------------- | ------------------------------------ |
+| `GET`    | `/applications`               | List applications                    |
+| `POST`   | `/applications`               | Create an application from a program |
+| `GET`    | `/application/:applicationId` | Get a single application             |
+| `PATCH`  | `/application/:applicationId` | Update an application                |
+| `DELETE` | `/application/:applicationId` | Delete an application                |
 
 ### Contacts
 
-| Method | Endpoint | Description |
-|---|---|---|
-| `GET` | `/contacts?applicationId=` | List the current user's contacts, optionally filtered by application |
-| `POST` | `/contacts` | Add a contact to an application |
-| `GET` | `/contact/:contactId` | Get a single contact |
-| `PATCH` | `/contact/:contactId` | Update a contact (`name`, `school`, `role`, `email`, `notes`) |
-| `DELETE` | `/contact/:contactId` | Delete a contact |
+| Method   | Endpoint                   | Description                                                          |
+| -------- | -------------------------- | -------------------------------------------------------------------- |
+| `GET`    | `/contacts?applicationId=` | List the current user's contacts, optionally filtered by application |
+| `POST`   | `/contacts`                | Add a contact to an application                                      |
+| `GET`    | `/contact/:contactId`      | Get a single contact                                                 |
+| `PATCH`  | `/contact/:contactId`      | Update a contact (`name`, `school`, `role`, `email`, `notes`)        |
+| `DELETE` | `/contact/:contactId`      | Delete a contact                                                     |
 
 ### `POST /auth/register` request body
 
@@ -188,8 +188,12 @@ All endpoints except `/auth/register` and `/auth/login` require an `Authorizatio
 ```
 
 **Response**
+
 ```json
-{ "token": "...", "user": { "id": "...", "email": "elena@example.com", "name": "Elena Diaz" } }
+{
+  "token": "...",
+  "user": { "id": "...", "email": "elena@example.com", "name": "Elena Diaz" }
+}
 ```
 
 ### `POST /applications` request body
