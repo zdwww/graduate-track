@@ -1,0 +1,142 @@
+/* Spans the full width of the detail grid it is dropped into. */
+.panel {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.title {
+  margin: 0;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text);
+}
+
+.addButton {
+  padding: 6px 14px;
+  font-size: 13px;
+  border-radius: 8px;
+  border: 1px solid var(--accent-border);
+  background: var(--accent-bg);
+  color: var(--text-h);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.addButton:hover {
+  border-color: var(--accent);
+}
+
+.empty {
+  margin: 0;
+  font-size: 14px;
+  color: var(--text);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--bg);
+}
+
+.itemMain {
+  min-width: 0;
+}
+
+.itemMain p {
+  margin: 0 0 2px;
+  white-space: normal;
+}
+
+.name {
+  font-size: 15px;
+  color: var(--text-h);
+}
+
+.role {
+  color: var(--text);
+  font-weight: normal;
+}
+
+.meta {
+  font-size: 13px;
+  color: var(--text);
+}
+
+.email {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.email:hover {
+  text-decoration: underline;
+}
+
+.notes {
+  margin-top: 6px;
+  font-size: 13px;
+  color: var(--text);
+  overflow-wrap: anywhere;
+}
+
+.itemActions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.editButton,
+.deleteButton {
+  padding: 6px 14px;
+  font-size: 13px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text-h);
+  cursor: pointer;
+}
+
+.editButton:hover:not(:disabled) {
+  background: var(--accent-bg);
+  border-color: var(--accent-border);
+}
+
+.deleteButton {
+  color: #e5484d;
+  border-color: #e5484d;
+}
+
+.deleteButton:hover:not(:disabled) {
+  background: rgba(229, 72, 77, 0.1);
+}
+
+.editButton:disabled,
+.deleteButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

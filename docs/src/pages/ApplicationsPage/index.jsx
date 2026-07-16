@@ -5,6 +5,7 @@ import styles from "./index.module.css";
 
 import Loading from "../../components/Loading/index.jsx";
 import ErrorMessage from "../../components/ErrorMessage/index.jsx";
+import Contacts from "../../components/Contacts/index.jsx";
 
 import useApplications from "../../helpers/hooks/useApplications.js";
 
@@ -183,6 +184,8 @@ const ApplicationsPage = () => {
                                   </ul>
                                 )}
                               </div>
+
+                              <Contacts applicationId={application._id} />
                             </div>
                           </td>
                         </tr>
