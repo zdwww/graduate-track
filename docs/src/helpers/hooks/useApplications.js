@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getAllApplications, deleteApplication } from "../apis/applications.js";
 
@@ -8,6 +8,7 @@ const useApplications = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [deletingId, setDeletingId] = useState(null);
+  const [statusFilter, setStatusFilter] = useState("");
 
   useEffect(() => {
     let isMounted = true;
@@ -55,11 +56,22 @@ const useApplications = () => {
     }
   };
 
+  const filteredApplications = useMemo(() => {
+    if (!statusFilter) {
+      return applications;
+    }
+    return applications.filter(
+      (application) => application.status === statusFilter,
+    );
+  }, [applications, statusFilter]);
+
   return {
-    applications,
+    applications: filteredApplications,
     loading,
     error,
     deletingId,
+    statusFilter,
+    setStatusFilter,
     handleEditClick,
     handleDelete,
   };

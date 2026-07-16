@@ -8,6 +8,7 @@ import ErrorMessage from "../../components/ErrorMessage/index.jsx";
 import Contacts from "../../components/Contacts/index.jsx";
 
 import useApplications from "../../helpers/hooks/useApplications.js";
+import { APPLICATION_STATUS } from "../../helpers/constants/applications.js";
 
 const formatDate = (value) => {
   if (!value) {
@@ -34,6 +35,8 @@ const ApplicationsPage = () => {
     loading,
     error,
     deletingId,
+    statusFilter,
+    setStatusFilter,
     handleEditClick,
     handleDelete,
   } = useApplications();
@@ -67,6 +70,18 @@ const ApplicationsPage = () => {
     <div className={styles.wrapper}>
       <div className={styles.container}>
         <h1 className={styles.title}>Applications</h1>
+        <select
+          className={styles.filterSelect}
+          value={statusFilter}
+          onChange={(e) => setStatusFilter(e.target.value)}
+        >
+          <option value="">All statuses</option>
+          {Object.values(APPLICATION_STATUS).map((value) => (
+            <option key={value} value={value}>
+              {value}
+            </option>
+          ))}
+        </select>
         {applications.length === 0 ? (
           <p className={styles.empty}>No applications found.</p>
         ) : (
