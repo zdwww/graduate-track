@@ -14,6 +14,9 @@ export async function createContact({
   role,
   email,
   notes,
+  facultyId,
+  researchAreas,
+  profileUrl,
 }) {
   const { insertedId } = await getContactsCollection().insertOne({
     userId,
@@ -23,6 +26,11 @@ export async function createContact({
     role: role ?? null,
     email: email ?? null,
     notes: notes ?? null,
+    // Provenance when picked from the school's faculty catalog; null/[] when
+    // the contact was entered manually. Set once at create — never editable.
+    facultyId: facultyId ?? null,
+    researchAreas: researchAreas ?? [],
+    profileUrl: profileUrl ?? null,
     createdAt: new Date(),
   });
   return { _id: insertedId };

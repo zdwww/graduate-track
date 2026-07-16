@@ -200,7 +200,11 @@ const ApplicationsPage = () => {
                                 )}
                               </div>
 
-                              <Contacts applicationId={application._id} />
+                              <Contacts
+                                applicationId={application._id}
+                                programId={application.programId}
+                                schoolName={application.schoolName}
+                              />
                             </div>
                           </td>
                         </tr>

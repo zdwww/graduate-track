@@ -8,8 +8,9 @@ import ErrorMessage from "../ErrorMessage/index.jsx";
 import Loading from "../Loading/index.jsx";
 
 import useContacts from "../../helpers/hooks/useContacts.js";
+import useFaculty from "../../helpers/hooks/useFaculty.js";
 
-const Contacts = ({ applicationId }) => {
+const Contacts = ({ applicationId, programId = null, schoolName = "" }) => {
   const {
     contacts,
     loading,
@@ -22,6 +23,8 @@ const Contacts = ({ applicationId }) => {
   } = useContacts(applicationId);
   const [isAdding, setIsAdding] = useState(false);
   const [editingId, setEditingId] = useState(null);
+  // Only fetch faculty while the add form is open (lazy, on demand).
+  const { faculty } = useFaculty(isAdding ? programId : null);
 
   const onCreate = async (fields) => {
     const succeeded = await handleCreate(fields);
@@ -68,6 +71,8 @@ const Contacts = ({ applicationId }) => {
           saving={savingId === "new"}
           onSubmit={onCreate}
           onCancel={() => setIsAdding(false)}
+          faculty={faculty}
+          schoolName={schoolName}
         />
       )}
 
@@ -119,6 +124,27 @@ const Contacts = ({ applicationId }) => {
                       </a>
                     </p>
                   )}
+                  {contact.researchAreas?.length > 0 && (
+                    <p className={styles.tags}>
+                      {contact.researchAreas.map((area) => (
+                        <span className={styles.tag} key={area}>
+                          {area}
+                        </span>
+                      ))}
+                    </p>
+                  )}
+                  {contact.profileUrl && (
+                    <p className={styles.meta}>
+                      <a
+                        className={styles.profileLink}
+                        href={contact.profileUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        View profile
+                      </a>
+                    </p>
+                  )}
                   {contact.notes && (
                     <p className={styles.notes}>{contact.notes}</p>
                   )}
@@ -151,6 +177,8 @@ const Contacts = ({ applicationId }) => {
 
 Contacts.propTypes = {
   applicationId: PropTypes.string.isRequired,
+  programId: PropTypes.string,
+  schoolName: PropTypes.string,
 };
 
 export default Contacts;

@@ -20,6 +20,14 @@
   gap: 6px;
 }
 
+.facultyPicker {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-bottom: 12px;
+  border-bottom: 1px dashed var(--border);
+}
+
 .label {
   font-size: 12px;
   text-transform: uppercase;

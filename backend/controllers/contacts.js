@@ -17,7 +17,17 @@ const pickEditableFields = (body) =>
 
 export const createNewContact = async (req, res) => {
   try {
-    const { applicationId, name, school, role, email, notes } = req.body;
+    const {
+      applicationId,
+      name,
+      school,
+      role,
+      email,
+      notes,
+      facultyId,
+      researchAreas,
+      profileUrl,
+    } = req.body;
     if (!applicationId) {
       return res.status(400).json({ error: "applicationId is required" });
     }
@@ -33,6 +43,9 @@ export const createNewContact = async (req, res) => {
       role,
       email,
       notes,
+      facultyId,
+      researchAreas,
+      profileUrl,
     });
 
     return res.status(201).json({ contact });

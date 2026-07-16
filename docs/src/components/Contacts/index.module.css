@@ -97,6 +97,30 @@
   text-decoration: underline;
 }
 
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tag {
+  padding: 2px 8px;
+  font-size: 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  color: var(--text);
+  background: var(--accent-bg);
+}
+
+.profileLink {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.profileLink:hover {
+  text-decoration: underline;
+}
+
 .notes {
   margin-top: 6px;
   font-size: 13px;
