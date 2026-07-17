@@ -20,7 +20,6 @@ export default [
         ...globals.browser,
         ...globals.node,
         ...globals.es2025,
-        ...globals.jest,
       },
     },
     plugins: {
