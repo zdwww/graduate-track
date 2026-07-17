@@ -1,0 +1,6 @@
+# build output
+dist
+docs/dist
+
+# generated lockfiles
+**/package-lock.json
