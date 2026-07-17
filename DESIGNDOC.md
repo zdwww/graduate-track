@@ -66,6 +66,6 @@ Homepage/navigation, MongoDB Atlas setup, project structure, ESLint/Prettier con
 - Auth: Passport (local + JWT strategies), bcrypt for password hashing
 - Data Requests: Fetch API
 
-### Desing Mock
+### Design Mockup
 
-![mock desing](./public/images/mock_design.jpg)
+![design mockup](./public/images/mock_design.jpg)

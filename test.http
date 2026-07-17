@@ -1,13 +1,5 @@
-### GET a specific book
-GET http://localhost:3000/api/user
-content-type: application/json
-
-### GET
-GET http://localhost:3000/api/applications
-content-type: application/json
-
-### Register
-
+### Register a new user
+# @name register
 POST http://localhost:3000/api/auth/register
 content-type: application/json
 
@@ -17,56 +9,50 @@ content-type: application/json
     "password": "test_test"
 }
 
-### Login
-POST http://localhost:3000/api/auth/login
-content-type: application/json
-
-{
-    "name": "John Doe",
-    "email": "example@example.com",
-    "password": "test_test"
-}
-
-### Login
+### Login (captures the token used by the requests below)
 # @name login
 POST http://localhost:3000/api/auth/login
 content-type: application/json
 
 {
-    "email": "test@test.com",
-    "password": "hogehoge"
+    "email": "example@example.com",
+    "password": "test_test"
 }
 
-### ME
+### Current user
 GET http://localhost:3000/api/auth/me
 Authorization: Bearer {{login.response.body.token}}
 
-### Programs
+### List schools (catalog)
 GET http://localhost:3000/api/schools
 Authorization: Bearer {{login.response.body.token}}
 
-### Program by Id
-GET http://localhost:3000/api/schools/uiuc-master-of-computer-science-mcs-mcs
+### School / program by id
+GET http://localhost:3000/api/schools/carnegie-mellon-m-s-in-computer-science-ms
 Authorization: Bearer {{login.response.body.token}}
 
-### Create Application
+### Faculty for a program
+GET http://localhost:3000/api/faculty?programId=carnegie-mellon-m-s-in-computer-science-ms
+Authorization: Bearer {{login.response.body.token}}
+
+### Create an application
 POST http://localhost:3000/api/applications
 content-type: application/json
 Authorization: Bearer {{login.response.body.token}}
 
 {
-    "schoolName": "Carnegie Mellon University", 
-    "programId": "carnegie-mellon-m-s-in-computer-science-ms", 
+    "schoolName": "Carnegie Mellon University",
+    "programId": "carnegie-mellon-m-s-in-computer-science-ms",
     "programName": "M.S. in Computer Science",
     "deadlines": []
 }
 
-### Get All Applications
+### List my applications
 GET http://localhost:3000/api/applications
 Authorization: Bearer {{login.response.body.token}}
 
-### Update Application
-PATCH http://localhost:3000/api/application/6a5730970c2b2ee5d6cd24d4
+### Update an application (paste an _id from the list above)
+PATCH http://localhost:3000/api/application/PASTE_APPLICATION_ID
 content-type: application/json
 Authorization: Bearer {{login.response.body.token}}
 
@@ -74,18 +60,18 @@ Authorization: Bearer {{login.response.body.token}}
     "status": "Applied"
 }
 
-### Delete Application
-DELETE http://localhost:3000/api/application/6a5738509d6d05e027f63179
+### Delete an application
+DELETE http://localhost:3000/api/application/PASTE_APPLICATION_ID
 Authorization: Bearer {{login.response.body.token}}
 
-### Create Contact
+### Create a contact (paste one of your application ids)
 # @name createContact
 POST http://localhost:3000/api/contacts
 content-type: application/json
 Authorization: Bearer {{login.response.body.token}}
 
 {
-    "applicationId": "6a5850daf5c39d30c2446492",
+    "applicationId": "PASTE_APPLICATION_ID",
     "name": "Dr. Jane Smith",
     "school": "Carnegie Mellon University",
     "role": "Professor",
@@ -93,19 +79,19 @@ Authorization: Bearer {{login.response.body.token}}
     "notes": "Met at the fall open house"
 }
 
-### Get All My Contacts
+### List all my contacts
 GET http://localhost:3000/api/contacts
 Authorization: Bearer {{login.response.body.token}}
 
-### Get Contacts For One Application
-GET http://localhost:3000/api/contacts?applicationId=6a5850daf5c39d30c2446492
+### List contacts for one application
+GET http://localhost:3000/api/contacts?applicationId=PASTE_APPLICATION_ID
 Authorization: Bearer {{login.response.body.token}}
 
-### Get Contact by Id
+### Get a contact by id
 GET http://localhost:3000/api/contact/{{createContact.response.body.contact._id}}
 Authorization: Bearer {{login.response.body.token}}
 
-### Update Contact
+### Update a contact
 PATCH http://localhost:3000/api/contact/{{createContact.response.body.contact._id}}
 content-type: application/json
 Authorization: Bearer {{login.response.body.token}}
@@ -115,6 +101,6 @@ Authorization: Bearer {{login.response.body.token}}
     "notes": "Followed up by email"
 }
 
-### Delete Contact
+### Delete a contact
 DELETE http://localhost:3000/api/contact/{{createContact.response.body.contact._id}}
 Authorization: Bearer {{login.response.body.token}}

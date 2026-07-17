@@ -75,7 +75,7 @@ const LoginPage = () => {
           {error && <p className={styles.error}>{error}</p>}
         </form>
         <Link to={routerPaths.signup} className={styles.signup}>
-          Haven't signuped yet?
+          Haven't signed up yet?
         </Link>
       </div>
     </div>

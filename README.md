@@ -12,7 +12,7 @@ A graduate school application tracker that helps applicants browse programs, tra
 ![login](./public/images/login.png)
 ![signup](./public/images/signup.png)
 ![schools](./public/images/schools.png)
-![school deatail](./public/images/school_detail.png)
+![school detail](./public/images/school_detail.png)
 ![applications](./public/images/applications.png)
 ![application edit](./public/images/application_edit.png)
 
