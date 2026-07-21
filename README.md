@@ -227,3 +227,15 @@ All endpoints except `/auth/register` and `/auth/login` require an `Authorizatio
 ## License
 
 MIT
+
+## Code Review (for Shota, from Claire)
+
+- Very organized, every type of file is properly separated into folders
+- All the code in all of your (Shota's) commits looks clear and concise. 
+- Really like the cohesive styling across the pages you worked on
+- It was very helpful to include screenshots of what you added/worked on in the pull requests - made it easy to identify what you worked on
+- Specifically was good attention to detail to disable the add button if the application was already added
+- One thing that I think is a good thing for more complex projects that you incorporated is the use of different branches based on the feature being worked on. While I think that a new branch for every new commit is a little bit overkill it is a good strategy to keep all the versions clear - and directly make sure only want you want has been committed 
+- I also appreciate how detailed your readme was, specifically the project structure was helpful for identifying all the features and components - one thing I would change in the future is I would label your frontend folder “frontend” vs “docs” that was a bit confusing
+
+While I didn't see any code issues, and testing the website everything worked properly, I would recommend that in future versions to include more ways to filter through applications. It is helpful to filter by school name but I believe it would be even more helpful to users if they could filter by any field (ex. MS/PHD, program type, etc).
