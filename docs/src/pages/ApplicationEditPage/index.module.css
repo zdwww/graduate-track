@@ -16,7 +16,7 @@
   display: inline-block;
   margin-bottom: 20px;
   font-size: 14px;
-  color: var(--accent);
+  color: var(--accent-text);
   text-decoration: none;
 }
 
@@ -161,9 +161,9 @@
 }
 
 .saveButton {
-  background: var(--accent);
-  color: #fff;
-  border-color: var(--accent);
+  background: #c27aff;
+  color: var(--text-h);
+  border-color: var(--text);
 }
 
 .saveButton:hover:not(:disabled) {
