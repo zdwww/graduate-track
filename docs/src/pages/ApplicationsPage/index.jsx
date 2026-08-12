@@ -70,7 +70,11 @@ const ApplicationsPage = () => {
     <div className={styles.wrapper}>
       <div className={styles.container}>
         <h1 className={styles.title}>Applications</h1>
+        <label htmlFor="statusFilter" className={styles.filterLabel}>
+          Filter by status
+        </label>
         <select
+          id="statusFilter"
           className={styles.filterSelect}
           value={statusFilter}
           onChange={(e) => setStatusFilter(e.target.value)}

@@ -1,7 +1,7 @@
 .nav {
   width: 100%;
   border-bottom: 1px solid var(--border);
-  background: var(--bg);
+  background: var(--accent-bg);
 }
 
 .container {
@@ -36,7 +36,7 @@
 }
 
 .linkActive {
-  color: var(--accent);
+  color: var(--accent-text);
   font-weight: 600;
 }
 

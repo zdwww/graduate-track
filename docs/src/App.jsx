@@ -18,32 +18,34 @@ function App() {
     <AuthProvider>
       <BrowserRouter basename={import.meta.env.BASE_URL}>
         <Navigation />
-        <Routes>
-          <Route
-            path={routerPaths.login}
-            element={<PublicRoute component={<LoginPage />} />}
-          />
-          <Route
-            path={routerPaths.signup}
-            element={<PublicRoute component={<SignupPage />} />}
-          />
-          <Route
-            path={routerPaths.schools}
-            element={<PrivateRoute component={<SchoolsPage />} />}
-          />
-          <Route
-            path={routerPaths.school}
-            element={<PrivateRoute component={<SchoolPage />} />}
-          />
-          <Route
-            path={routerPaths.applications}
-            element={<PrivateRoute component={<ApplicationsPage />} />}
-          />
-          <Route
-            path={routerPaths.applicationEdit}
-            element={<PrivateRoute component={<ApplicationEditPage />} />}
-          />
-        </Routes>
+        <main>
+          <Routes>
+            <Route
+              path={routerPaths.login}
+              element={<PublicRoute component={<LoginPage />} />}
+            />
+            <Route
+              path={routerPaths.signup}
+              element={<PublicRoute component={<SignupPage />} />}
+            />
+            <Route
+              path={routerPaths.schools}
+              element={<PrivateRoute component={<SchoolsPage />} />}
+            />
+            <Route
+              path={routerPaths.school}
+              element={<PrivateRoute component={<SchoolPage />} />}
+            />
+            <Route
+              path={routerPaths.applications}
+              element={<PrivateRoute component={<ApplicationsPage />} />}
+            />
+            <Route
+              path={routerPaths.applicationEdit}
+              element={<PrivateRoute component={<ApplicationEditPage />} />}
+            />
+          </Routes>
+        </main>
       </BrowserRouter>
     </AuthProvider>
   );
