@@ -13,10 +13,12 @@ const SchoolsPage = () => {
     page,
     totalPages,
     schoolNameFilter,
+    programNameFilter,
     handleRowClick,
     onClickCreateApplication,
     creatingProgramId,
     setSchoolNameFilter,
+    setProgramNameFilter,
     goToPreviousPage,
     goToNextPage,
   } = useSchools();
@@ -33,13 +35,22 @@ const SchoolsPage = () => {
     <div className={styles.wrapper}>
       <div className={styles.container}>
         <h1 className={styles.title}>Schools</h1>
-        <input
-          type="text"
-          className={styles.filterInput}
-          placeholder="Filter by school name..."
-          value={schoolNameFilter}
-          onChange={(e) => setSchoolNameFilter(e.target.value)}
-        />
+        <div className={styles.filterRow}>
+          <input
+            type="text"
+            className={styles.filterInput}
+            placeholder="Filter by school name..."
+            value={schoolNameFilter}
+            onChange={(e) => setSchoolNameFilter(e.target.value)}
+          />
+          <input
+            type="text"
+            className={styles.filterInput}
+            placeholder="Filter by program name..."
+            value={programNameFilter}
+            onChange={(e) => setProgramNameFilter(e.target.value)}
+          />
+        </div>
         {rows.length === 0 ? (
           <p className={styles.empty}>No schools found.</p>
         ) : (
