@@ -16,7 +16,7 @@
   display: inline-block;
   margin-bottom: 20px;
   font-size: 14px;
-  color: var(--accent);
+  color: var(--accent-text);
   text-decoration: none;
 }
 
@@ -41,7 +41,7 @@
   font-size: 13px;
   border-radius: 999px;
   background: var(--accent-bg);
-  color: var(--accent);
+  color: var(--accent-text);
   border: 1px solid var(--accent-border);
 }
 
