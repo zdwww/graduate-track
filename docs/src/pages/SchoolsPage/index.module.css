@@ -18,11 +18,17 @@
   margin: 0 0 24px;
 }
 
+.filterRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 0 0 20px;
+}
+
 .filterInput {
   display: block;
   width: 100%;
   max-width: 320px;
-  margin: 0 0 20px;
   padding: 10px 14px;
   font-size: 14px;
   border: 1px solid var(--border);

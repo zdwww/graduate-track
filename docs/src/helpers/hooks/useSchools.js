@@ -13,6 +13,7 @@ const useSchools = () => {
   const [error, setError] = useState(null);
   const [page, setPage] = useState(1);
   const [schoolNameFilter, setSchoolNameFilter] = useState("");
+  const [programNameFilter, setProgramNameFilter] = useState("");
   const [creatingProgramId, setCreatingProgramId] = useState(null);
 
   useEffect(() => {
@@ -76,21 +77,28 @@ const useSchools = () => {
   };
 
   const rows = useMemo(() => {
-    const term = schoolNameFilter.trim().toLowerCase();
-    const filteredSchools = term
+    const schoolTerm = schoolNameFilter.trim().toLowerCase();
+    const programTerm = programNameFilter.trim().toLowerCase();
+    const filteredSchools = schoolTerm
       ? schools.filter((school) =>
-          school.schoolName?.toLowerCase().includes(term),
+          school.schoolName?.toLowerCase().includes(schoolTerm),
         )
       : schools;
 
     return filteredSchools.flatMap((school) =>
-      (school.programs ?? []).map((program) => ({
-        ...program,
-        schoolName: school.schoolName,
-        hasApplication: appliedProgramIds.has(program.programId),
-      })),
+      (school.programs ?? [])
+        .filter((program) =>
+          programTerm
+            ? program.programName?.toLowerCase().includes(programTerm)
+            : true,
+        )
+        .map((program) => ({
+          ...program,
+          schoolName: school.schoolName,
+          hasApplication: appliedProgramIds.has(program.programId),
+        })),
     );
-  }, [schools, schoolNameFilter, appliedProgramIds]);
+  }, [schools, schoolNameFilter, programNameFilter, appliedProgramIds]);
 
   const totalPages = Math.max(1, Math.ceil(rows.length / PAGE_SIZE));
   const currentPage = Math.min(page, totalPages);
@@ -102,6 +110,11 @@ const useSchools = () => {
 
   const updateSchoolNameFilter = (value) => {
     setSchoolNameFilter(value);
+    setPage(1);
+  };
+
+  const updateProgramNameFilter = (value) => {
+    setProgramNameFilter(value);
     setPage(1);
   };
 
@@ -120,10 +133,12 @@ const useSchools = () => {
     page: currentPage,
     totalPages,
     schoolNameFilter,
+    programNameFilter,
     handleRowClick,
     onClickCreateApplication,
     creatingProgramId,
     setSchoolNameFilter: updateSchoolNameFilter,
+    setProgramNameFilter: updateProgramNameFilter,
     goToPreviousPage,
     goToNextPage,
   };
