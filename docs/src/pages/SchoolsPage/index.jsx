@@ -14,11 +14,14 @@ const SchoolsPage = () => {
     totalPages,
     schoolNameFilter,
     programNameFilter,
+    degreeFilter,
+    degreeOptions,
     handleRowClick,
     onClickCreateApplication,
     creatingProgramId,
     setSchoolNameFilter,
     setProgramNameFilter,
+    setDegreeFilter,
     goToPreviousPage,
     goToNextPage,
   } = useSchools();
@@ -50,6 +53,22 @@ const SchoolsPage = () => {
             value={programNameFilter}
             onChange={(e) => setProgramNameFilter(e.target.value)}
           />
+          <label htmlFor="degreeFilter" className={styles.filterLabel}>
+            Filter by degree
+          </label>
+          <select
+            id="degreeFilter"
+            className={styles.filterSelect}
+            value={degreeFilter}
+            onChange={(e) => setDegreeFilter(e.target.value)}
+          >
+            <option value="">All degrees</option>
+            {degreeOptions.map((degree) => (
+              <option key={degree} value={degree}>
+                {degree}
+              </option>
+            ))}
+          </select>
         </div>
         {rows.length === 0 ? (
           <p className={styles.empty}>No schools found.</p>

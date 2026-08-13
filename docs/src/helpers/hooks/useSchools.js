@@ -14,6 +14,7 @@ const useSchools = () => {
   const [page, setPage] = useState(1);
   const [schoolNameFilter, setSchoolNameFilter] = useState("");
   const [programNameFilter, setProgramNameFilter] = useState("");
+  const [degreeFilter, setDegreeFilter] = useState("");
   const [creatingProgramId, setCreatingProgramId] = useState(null);
 
   useEffect(() => {
@@ -76,6 +77,18 @@ const useSchools = () => {
     }
   };
 
+  const degreeOptions = useMemo(() => {
+    const degrees = new Set();
+    schools.forEach((school) =>
+      (school.programs ?? []).forEach((program) => {
+        if (program.degree) {
+          degrees.add(program.degree);
+        }
+      }),
+    );
+    return Array.from(degrees).sort((a, b) => a.localeCompare(b));
+  }, [schools]);
+
   const rows = useMemo(() => {
     const schoolTerm = schoolNameFilter.trim().toLowerCase();
     const programTerm = programNameFilter.trim().toLowerCase();
@@ -92,13 +105,22 @@ const useSchools = () => {
             ? program.programName?.toLowerCase().includes(programTerm)
             : true,
         )
+        .filter((program) =>
+          degreeFilter ? program.degree === degreeFilter : true,
+        )
         .map((program) => ({
           ...program,
           schoolName: school.schoolName,
           hasApplication: appliedProgramIds.has(program.programId),
         })),
     );
-  }, [schools, schoolNameFilter, programNameFilter, appliedProgramIds]);
+  }, [
+    schools,
+    schoolNameFilter,
+    programNameFilter,
+    degreeFilter,
+    appliedProgramIds,
+  ]);
 
   const totalPages = Math.max(1, Math.ceil(rows.length / PAGE_SIZE));
   const currentPage = Math.min(page, totalPages);
@@ -118,6 +140,11 @@ const useSchools = () => {
     setPage(1);
   };
 
+  const updateDegreeFilter = (value) => {
+    setDegreeFilter(value);
+    setPage(1);
+  };
+
   const goToPreviousPage = () => {
     setPage((prev) => Math.max(prev - 1, 1));
   };
@@ -134,11 +161,14 @@ const useSchools = () => {
     totalPages,
     schoolNameFilter,
     programNameFilter,
+    degreeFilter,
+    degreeOptions,
     handleRowClick,
     onClickCreateApplication,
     creatingProgramId,
     setSchoolNameFilter: updateSchoolNameFilter,
     setProgramNameFilter: updateProgramNameFilter,
+    setDegreeFilter: updateDegreeFilter,
     goToPreviousPage,
     goToNextPage,
   };
