@@ -89,7 +89,7 @@
 }
 
 .email {
-  color: var(--accent);
+  color: var(--accent-text);
   text-decoration: none;
 }
 
@@ -113,7 +113,7 @@
 }
 
 .profileLink {
-  color: var(--accent);
+  color: var(--accent-text);
   text-decoration: none;
 }
 
@@ -151,12 +151,12 @@
 }
 
 .deleteButton {
-  color: #e5484d;
-  border-color: #e5484d;
+  color: var(--danger);
+  border-color: var(--danger);
 }
 
 .deleteButton:hover:not(:disabled) {
-  background: rgba(229, 72, 77, 0.1);
+  background: var(--danger-bg);
 }
 
 .editButton:disabled,

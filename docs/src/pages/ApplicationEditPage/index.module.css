@@ -124,15 +124,15 @@
 .removeButton {
   padding: 8px 14px;
   font-size: 13px;
-  border: 1px solid #e5484d;
+  border: 1px solid var(--danger);
   border-radius: 8px;
   background: var(--bg);
-  color: #e5484d;
+  color: var(--danger);
   cursor: pointer;
 }
 
 .removeButton:hover {
-  background: rgba(229, 72, 77, 0.1);
+  background: var(--danger-bg);
 }
 
 .actions {
@@ -161,8 +161,8 @@
 }
 
 .saveButton {
-  background: #c27aff;
-  color: var(--text-h);
+  background: var(--accent-solid);
+  color: var(--on-accent-solid);
   border-color: var(--text);
 }
 

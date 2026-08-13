@@ -1,6 +1,7 @@
 import { NavLink, useNavigate } from "react-router-dom";
 
 import styles from "./index.module.css";
+import ThemeToggle from "../ThemeToggle";
 import useAuth from "../../helpers/hooks/useAuth";
 import { routerPaths } from "../../helpers/constants/routes";
 
@@ -51,6 +52,9 @@ const Navigation = () => {
               </NavLink>
             </>
           )}
+          {/* Outside the auth branches: the theme choice belongs to the visitor,
+              not the session, so it stays available on Login and Signup too. */}
+          <ThemeToggle />
         </div>
       </div>
     </nav>

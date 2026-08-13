@@ -1,14 +1,29 @@
+/* Light palette (default). The dark palette lives in the [data-theme="dark"] block
+   below rather than in a prefers-color-scheme media query: a media query cannot be
+   overridden from JavaScript, so a theme switcher could never turn dark mode on.
+   ThemeProvider resolves the "system" preference and always writes a concrete
+   data-theme onto <html>, so exactly one palette is ever active. */
 :root {
   --text: #6b6375;
   --text-h: #08060d;
   --bg: #fff;
   --border: #e5e4e7;
-  --code-bg: #f4f3ec;
   --accent: #aa3bff;
   --accent-text: #7c1fd1;
   --accent-bg: rgba(170, 59, 255, 0.1);
   --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
+
+  /* Filled primary action (Save, + Add). Deliberately identical in both palettes:
+     one solid brand fill with dark text reads as "approve" everywhere, and the
+     pairing is 7.22:1 so it passes AA without a per-palette variant. */
+  --accent-solid: #c27aff;
+  --on-accent-solid: #08060d;
+
+  /* Destructive action + error text (Delete, form errors). AA-safe as text on the
+     matching --bg, so unlike --accent it needs no separate -text variant. */
+  --danger: #c62828;
+  --danger-bg: rgba(198, 40, 40, 0.1);
+
   --shadow:
     rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
 
@@ -18,7 +33,7 @@
 
   font: 18px/145% var(--sans);
   letter-spacing: 0.18px;
-  color-scheme: light dark;
+  color-scheme: light;
   color: var(--text);
   background: var(--bg);
   font-synthesis: none;
@@ -31,25 +46,25 @@
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-text: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
+/* color-scheme must flip with the palette, not just the custom properties —
+   it is what keeps native controls (select, textarea, scrollbars) in step. */
+:root[data-theme="dark"] {
+  --text: #9ca3af;
+  --text-h: #f3f4f6;
+  --bg: #16171d;
+  --border: #2e303a;
+  --accent: #c084fc;
+  --accent-text: #c084fc;
+  --accent-bg: rgba(192, 132, 252, 0.15);
+  --accent-border: rgba(192, 132, 252, 0.5);
 
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
+  --danger: #f87171;
+  --danger-bg: rgba(248, 113, 113, 0.15);
+
+  --shadow:
+    rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
+
+  color-scheme: dark;
 }
 
 body {

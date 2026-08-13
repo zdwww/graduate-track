@@ -1,0 +1,68 @@
+.group {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 3px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--bg);
+}
+
+.thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 32px;
+  height: 26px;
+  border-radius: 999px;
+  background: var(--accent-solid);
+  transition: transform 0.18s ease;
+}
+
+/* Each slot is exactly one thumb wide, so a whole-width translate lands on it. */
+.group[data-selected="1"] .thumb {
+  transform: translateX(100%);
+}
+
+.group[data-selected="2"] .thumb {
+  transform: translateX(200%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .thumb {
+    transition: none;
+  }
+}
+
+.option {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 26px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: none;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.option:hover:not(.selected) {
+  color: var(--text-h);
+}
+
+.option:focus-visible {
+  outline: 2px solid var(--accent-text);
+  outline-offset: 2px;
+}
+
+.selected {
+  color: var(--on-accent-solid);
+}
+
+.icon {
+  width: 15px;
+  height: 15px;
+}

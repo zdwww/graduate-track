@@ -9,45 +9,48 @@ import SchoolsPage from "./pages/SchoolsPage";
 
 import { routerPaths } from "./helpers/constants/routes";
 import { AuthProvider } from "./helpers/context/AuthProvider";
+import { ThemeProvider } from "./helpers/context/ThemeProvider";
 import SchoolPage from "./pages/SchoolPage";
 import ApplicationsPage from "./pages/ApplicationsPage";
 import ApplicationEditPage from "./pages/ApplicationEditPage";
 
 function App() {
   return (
-    <AuthProvider>
-      <BrowserRouter basename={import.meta.env.BASE_URL}>
-        <Navigation />
-        <main>
-          <Routes>
-            <Route
-              path={routerPaths.login}
-              element={<PublicRoute component={<LoginPage />} />}
-            />
-            <Route
-              path={routerPaths.signup}
-              element={<PublicRoute component={<SignupPage />} />}
-            />
-            <Route
-              path={routerPaths.schools}
-              element={<PrivateRoute component={<SchoolsPage />} />}
-            />
-            <Route
-              path={routerPaths.school}
-              element={<PrivateRoute component={<SchoolPage />} />}
-            />
-            <Route
-              path={routerPaths.applications}
-              element={<PrivateRoute component={<ApplicationsPage />} />}
-            />
-            <Route
-              path={routerPaths.applicationEdit}
-              element={<PrivateRoute component={<ApplicationEditPage />} />}
-            />
-          </Routes>
-        </main>
-      </BrowserRouter>
-    </AuthProvider>
+    <ThemeProvider>
+      <AuthProvider>
+        <BrowserRouter basename={import.meta.env.BASE_URL}>
+          <Navigation />
+          <main>
+            <Routes>
+              <Route
+                path={routerPaths.login}
+                element={<PublicRoute component={<LoginPage />} />}
+              />
+              <Route
+                path={routerPaths.signup}
+                element={<PublicRoute component={<SignupPage />} />}
+              />
+              <Route
+                path={routerPaths.schools}
+                element={<PrivateRoute component={<SchoolsPage />} />}
+              />
+              <Route
+                path={routerPaths.school}
+                element={<PrivateRoute component={<SchoolPage />} />}
+              />
+              <Route
+                path={routerPaths.applications}
+                element={<PrivateRoute component={<ApplicationsPage />} />}
+              />
+              <Route
+                path={routerPaths.applicationEdit}
+                element={<PrivateRoute component={<ApplicationEditPage />} />}
+              />
+            </Routes>
+          </main>
+        </BrowserRouter>
+      </AuthProvider>
+    </ThemeProvider>
   );
 }
 
