@@ -126,11 +126,11 @@
 }
 
 .deleteButton {
-  color: #eb161d;
+  color: var(--danger);
 }
 
 .deleteButton:hover:not(:disabled) {
-  background: rgba(229, 72, 77, 0.1);
+  background: var(--danger-bg);
 }
 
 .editButton:disabled,

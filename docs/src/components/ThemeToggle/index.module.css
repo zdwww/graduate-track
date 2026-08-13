@@ -1,0 +1,34 @@
+.group {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.option {
+  padding: 6px 10px;
+  font-size: 12px;
+  border: 0;
+  background: var(--bg);
+  color: var(--text);
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.option + .option {
+  border-left: 1px solid var(--border);
+}
+
+.option:hover:not(.selected) {
+  background: var(--accent-bg);
+  color: var(--text-h);
+}
+
+.selected {
+  background: var(--accent-solid);
+  color: var(--on-accent-solid);
+  font-weight: 600;
+}
