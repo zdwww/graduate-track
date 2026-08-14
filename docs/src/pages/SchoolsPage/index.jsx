@@ -71,7 +71,7 @@ const SchoolsPage = () => {
           </select>
         </div>
         {rows.length === 0 ? (
-          <p className={styles.empty}>No schools found.</p>
+          <p className={styles.empty}>No programs found.</p>
         ) : (
           <>
             <div className={styles.tableWrapper}>

@@ -65,7 +65,9 @@ const LandingPage = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
-        <section className={styles.hero}>
+        {/* A div, not a section: an unnamed <section> becomes a landmark with no
+            accessible name, and this content is already inside <main>. */}
+        <div className={styles.hero}>
           <p className={styles.eyebrow}>For prospective graduate students</p>
           <h1 className={styles.title}>
             Track every graduate application in one place
@@ -89,13 +91,14 @@ const LandingPage = () => {
           <p className={styles.assurance}>
             Your applications and contacts stay private to your account.
           </p>
-        </section>
+        </div>
 
         <section className={styles.features} aria-labelledby="how-it-works">
           <h2 id="how-it-works" className={styles.sectionTitle}>
             How it works
           </h2>
-          <ul className={styles.featureList}>
+          {/* WebKit drops the list role when list-style is none, so state it. */}
+          <ul className={styles.featureList} role="list">
             {FEATURES.map(({ title, body, Icon }) => (
               <li key={title} className={styles.feature}>
                 <Icon />

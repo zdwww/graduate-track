@@ -47,10 +47,10 @@ const Navigation = () => {
           ) : (
             <>
               <NavLink to={routerPaths.login} className={linkClassName}>
-                Login
+                Log in
               </NavLink>
               <NavLink to={routerPaths.signup} className={linkClassName}>
-                Signup
+                Sign up
               </NavLink>
             </>
           )}
