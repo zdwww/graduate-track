@@ -81,8 +81,8 @@ const SchoolsPage = () => {
                   <tr>
                     <th>School</th>
                     <th>Program</th>
-                    <th>Degree</th>
-                    <th>
+                    <th className={styles.degreeCell}>Degree</th>
+                    <th className={styles.actionCell}>
                       <span className={styles.srOnly}>Actions</span>
                     </th>
                   </tr>
@@ -104,8 +104,8 @@ const SchoolsPage = () => {
                           {row.programName}
                         </Link>
                       </td>
-                      <td>{row.degree}</td>
-                      <td>
+                      <td className={styles.degreeCell}>{row.degree}</td>
+                      <td className={styles.actionCell}>
                         <button
                           type="button"
                           className={styles.createButton}

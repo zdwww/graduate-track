@@ -90,6 +90,17 @@
 .table td {
   text-align: left;
   padding: 14px 20px;
+}
+
+/* School and program names are free to wrap; only these two hold a line.
+   This rule used to say `white-space: nowrap` for every cell, which meant the
+   table's minimum width was the sum of its longest school and program names and
+   could never shrink below that. Once the real catalog's names were long enough
+   the table could not fit its 960px container and the whole thing had to be
+   scrolled sideways. Degrees are single unbreakable tokens (MS, PhD, MEng), and
+   a wrapped "+ Add" reads as two separate controls, so those two keep nowrap. */
+.degreeCell,
+.actionCell {
   white-space: nowrap;
 }
 

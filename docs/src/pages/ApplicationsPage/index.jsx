@@ -92,7 +92,7 @@ const ApplicationsPage = () => {
                   </th>
                   <th>School</th>
                   <th>Program</th>
-                  <th>Status</th>
+                  <th className={styles.statusCell}>Status</th>
                   <th>
                     <span className={styles.srOnly}>Actions</span>
                   </th>
@@ -142,7 +142,9 @@ const ApplicationsPage = () => {
                             {application.programName}
                           </Link>
                         </td>
-                        <td>{application.status}</td>
+                        <td className={styles.statusCell}>
+                          {application.status}
+                        </td>
                         <td className={styles.actions}>
                           <button
                             type="button"

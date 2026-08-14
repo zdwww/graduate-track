@@ -67,6 +67,12 @@
 .table td {
   text-align: left;
   padding: 14px 20px;
+}
+
+/* Same fix as the catalog: school and program names wrap rather than forcing the
+   table wider than its container. Status keeps nowrap because "In progress" would
+   otherwise break across two lines; .actions already carries its own nowrap. */
+.statusCell {
   white-space: nowrap;
 }
 
