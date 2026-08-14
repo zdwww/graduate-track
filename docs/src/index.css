@@ -13,11 +13,13 @@
   --accent-bg: rgba(170, 59, 255, 0.1);
   --accent-border: rgba(170, 59, 255, 0.5);
 
-  /* Filled primary action (Save, + Add). Deliberately identical in both palettes:
-     one solid brand fill with dark text reads as "approve" everywhere, and the
-     pairing is 7.22:1 so it passes AA without a per-palette variant. */
-  --accent-solid: #c27aff;
-  --on-accent-solid: #08060d;
+  /* Filled primary action (Create an account, Save, + Add hover). This pair was once
+     identical in both palettes on the grounds that 7.22:1 passes AA either way. The
+     contrast held but the weight did not: a pale lavender fill reads as a disabled or
+     decorative chip on a white page, where a primary action needs a deep saturated
+     fill. Each palette now gets the fill that carries on its own background. */
+  --accent-solid: #7c1fd1;
+  --on-accent-solid: #fff;
 
   /* Destructive action + error text (Delete, form errors). AA-safe as text on the
      matching --bg, so unlike --accent it needs no separate -text variant. */
@@ -27,8 +29,14 @@
   --shadow:
     rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
 
-  --sans: system-ui, "Segoe UI", Roboto, sans-serif;
-  --heading: system-ui, "Segoe UI", Roboto, sans-serif;
+  /* Serif headings over a humanist sans body, the pairing from the approved proposal
+     mockup. That mockup named Georgia and Avenir Next, which are system faces — they
+     degrade to the browser default on machines that lack them, which is the thing this
+     is meant to move away from. Both families below are self-hosted variable fonts, so
+     every visitor sees the intended pairing. Georgia stays as the heading fallback
+     because it is what the design was drawn against. */
+  --sans: "Inter Variable", system-ui, "Segoe UI", Roboto, sans-serif;
+  --heading: "Source Serif 4 Variable", Georgia, "Times New Roman", serif;
   --mono: ui-monospace, Consolas, monospace;
 
   font: 18px/145% var(--sans);
@@ -58,6 +66,11 @@
   --accent-bg: rgba(192, 132, 252, 0.15);
   --accent-border: rgba(192, 132, 252, 0.5);
 
+  /* Inverted against the light palette: on a near-black page the light fill is what
+     carries, and it takes dark text. */
+  --accent-solid: #c27aff;
+  --on-accent-solid: #08060d;
+
   --danger: #f87171;
   --danger-bg: rgba(248, 113, 113, 0.15);
 
@@ -70,6 +83,18 @@
 body {
   margin: 0;
   padding: 0;
+}
+
+/* Native form controls do not inherit font-family from their parent — every input,
+   select, textarea and button in the app was rendering in the UA default (Arial),
+   so the body face above would never have reached a single one of them. Only the
+   family is inherited, not the `font` shorthand, so no control's size, weight or
+   line-height moves and nothing reflows. */
+input,
+select,
+textarea,
+button {
+  font-family: inherit;
 }
 
 /* One focus ring for the whole app. Defined globally rather than per component so a

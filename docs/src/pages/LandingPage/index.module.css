@@ -60,7 +60,9 @@
 .primaryAction {
   background: var(--accent-solid);
   color: var(--on-accent-solid);
-  border-color: var(--text);
+  /* Matches the fill rather than using --text: a grey outline around a solid button
+     reads as a separate pasted-on box instead of one control. */
+  border-color: var(--accent-solid);
 }
 
 .primaryAction:hover {

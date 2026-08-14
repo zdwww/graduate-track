@@ -155,9 +155,9 @@ Once the app is running locally (or on the [live demo](https://zdwww.github.io/g
 
 1. **Sign up / log in** — create an account on the Signup page or log in on the Login page. A JWT is stored client-side and attached to all subsequent API requests.
 2. **Browse schools** — the home page lists programs from the school catalog. Filter by school name, program name, and/or degree, then page through results.
-3. **View a program** — click a row to see its detail page: degree, field, external links, and deadlines.
+3. **View a program** — click the program name to see its detail page: degree, field, external links, and deadlines. Every control on the page is reachable with `Tab` and activates with `Enter`.
 4. **Add an application** — click **+ Add** on a program row to start tracking it; the button becomes disabled once the program has been added.
-5. **Manage applications** — the Applications page lists everything you're tracking. Click a row to expand it and see the application date, notes, interview dates, and contacts.
+5. **Manage applications** — the Applications page lists everything you're tracking. Use the ▶ button at the start of a row to expand it and see the application date, notes, interview dates, and contacts.
 6. **Edit an application** — click **Edit** to change its status, notes, and interview dates, then **Save**.
 7. **Delete an application** — click **Delete** and confirm; this removes the application (its contacts remain queryable by `applicationId` but are no longer reachable from the UI).
 8. **Manage contacts** — from an expanded application row, add a contact (name, school, role, email, notes) and edit or delete existing contacts inline.
