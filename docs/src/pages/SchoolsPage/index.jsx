@@ -37,7 +37,7 @@ const SchoolsPage = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
-        <h1 className={styles.title}>Schools</h1>
+        <h1 className={styles.title}>Browse Programs</h1>
         <div className={styles.filterRow}>
           <input
             type="text"

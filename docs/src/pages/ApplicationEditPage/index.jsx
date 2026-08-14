@@ -48,7 +48,7 @@ const ApplicationEditPage = () => {
     <div className={styles.wrapper}>
       <div className={styles.container}>
         <Link to={routerPaths.applications} className={styles.backLink}>
-          ← Back to Applications
+          ← Back to My Applications
         </Link>
 
         <h1 className={styles.title}>Edit Application</h1>

@@ -11,18 +11,35 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  /* Descriptive link labels plus the theme toggle no longer fit one row on a phone;
+     without wrapping the group spills past the viewport instead of moving down. */
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
 .brand {
   font-size: 16px;
   font-weight: 600;
   color: var(--text-h);
+  text-decoration: none;
+}
+
+.brand:hover {
+  color: var(--accent-text);
 }
 
 .links {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 20px;
+}
+
+/* Tighten the gap first so the row survives a little longer before it wraps. */
+@media (max-width: 640px) {
+  .links {
+    gap: 12px;
+  }
 }
 
 .link {

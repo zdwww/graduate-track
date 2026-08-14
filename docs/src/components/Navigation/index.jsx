@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 
 import styles from "./index.module.css";
 import ThemeToggle from "../ThemeToggle";
@@ -24,15 +24,17 @@ const Navigation = () => {
   return (
     <nav className={styles.nav}>
       <div className={styles.container}>
-        <span className={styles.brand}>Graduate Track</span>
+        <Link to={routerPaths.schools} className={styles.brand}>
+          Graduate Track
+        </Link>
         <div className={styles.links}>
           {isAuthenticated ? (
             <>
               <NavLink to={routerPaths.schools} className={linkClassName} end>
-                Schools
+                Browse Programs
               </NavLink>
               <NavLink to={routerPaths.applications} className={linkClassName}>
-                Applications
+                My Applications
               </NavLink>
               <button
                 type="button"
