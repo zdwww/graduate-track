@@ -54,8 +54,6 @@
 
 .input:focus,
 .textarea:focus {
-  outline: 2px solid var(--accent-border);
-  outline-offset: 1px;
   border-color: var(--accent-border);
 }
 

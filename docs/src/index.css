@@ -71,3 +71,14 @@ body {
   margin: 0;
   padding: 0;
 }
+
+/* One focus ring for the whole app. Defined globally rather than per component so a
+   new control cannot ship without a visible indicator — which is how the tables ended
+   up keyboard-hostile in the first place. --accent-text is used instead of
+   --accent-border because the latter is only 2.09:1 against the page, under the 3:1
+   WCAG 2.4.11 asks of a focus indicator. Components may still tint their border on
+   :focus as a mouse affordance; this is the part keyboard users rely on. */
+:focus-visible {
+  outline: 2px solid var(--accent-text);
+  outline-offset: 2px;
+}

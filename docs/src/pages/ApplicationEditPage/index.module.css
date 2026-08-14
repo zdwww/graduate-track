@@ -74,7 +74,6 @@
 .select:focus,
 .textarea:focus,
 .dateInput:focus {
-  outline: none;
   border-color: var(--accent-border);
 }
 
