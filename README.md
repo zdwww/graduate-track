@@ -9,13 +9,36 @@ A graduate school application tracker that helps applicants browse programs, tra
 - **Live demo:** https://zdwww.github.io/graduate-track/
 - [**Design Doc**](./DESIGNDOC.md)
 
+### Landin Page
+
 ![landing](./public/images/landing.png)
+
+### Login Page
+
 ![login](./public/images/login.png)
+
+### Signup Page
+
 ![signup](./public/images/signup.png)
+
+### School's List Page
+
 ![schools](./public/images/schools.png)
+
+### School's List Page (Dark mode)
+
 ![schools_darkmode](./public/images/shcools_darkmode.png)
+
+### School Detail Page
+
 ![school detail](./public/images/school_detail.png)
+
+### My Application Page
+
 ![applications](./public/images/applications.png)
+
+### My Application Edit Page
+
 ![application edit](./public/images/application_edit.png)
 
 ## Features
