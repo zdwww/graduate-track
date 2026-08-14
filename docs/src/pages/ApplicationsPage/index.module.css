@@ -18,7 +18,8 @@
   margin: 0 0 24px;
 }
 
-.filterLabel {
+.filterLabel,
+.srOnly {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -45,7 +46,6 @@
 }
 
 .filterSelect:focus {
-  outline: none;
   border-color: var(--accent-border);
 }
 
@@ -145,10 +145,6 @@
   text-align: center;
 }
 
-.row {
-  cursor: pointer;
-}
-
 .row:hover {
   background: var(--accent-bg);
 }
@@ -157,10 +153,35 @@
   width: 32px;
 }
 
+/* Transparent chrome so the chevron stays the visible affordance, but it has to be a
+   real button: Tab has to reach it and Enter/Space have to open the panel. Sized past
+   the 24px minimum target rather than wrapping the glyph tightly. */
+.toggleButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.toggleButton:hover {
+  background: var(--accent-bg);
+  color: var(--accent-text);
+}
+
 .chevron {
   display: inline-block;
   font-size: 11px;
-  color: var(--text);
+  color: inherit;
   transition: transform 0.15s ease;
 }
 
