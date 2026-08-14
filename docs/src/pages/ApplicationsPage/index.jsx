@@ -54,13 +54,7 @@ const ApplicationsPage = () => {
     setExpandedId((prev) => (prev === applicationId ? null : applicationId));
   };
 
-  const onEditClick = (event, applicationId) => {
-    event.stopPropagation();
-    handleEditClick(applicationId);
-  };
-
-  const onDeleteClick = (event, applicationId) => {
-    event.stopPropagation();
+  const onDeleteClick = (applicationId) => {
     if (window.confirm("Delete this application?")) {
       handleDelete(applicationId);
     }
@@ -93,11 +87,15 @@ const ApplicationsPage = () => {
             <table className={styles.table}>
               <thead>
                 <tr>
-                  <th></th>
+                  <th>
+                    <span className={styles.srOnly}>Details</span>
+                  </th>
                   <th>School</th>
                   <th>Program</th>
                   <th>Status</th>
-                  <th></th>
+                  <th>
+                    <span className={styles.srOnly}>Actions</span>
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -105,28 +103,41 @@ const ApplicationsPage = () => {
                   const isExpanded = expandedId === application._id;
                   const deadlines = application.deadlines ?? [];
                   const interviewDates = application.interviewDates ?? [];
+                  const detailsId = `application-details-${application._id}`;
+                  const detailsLabel = `${isExpanded ? "Hide" : "Show"} details for ${application.programName} at ${application.schoolName}`;
 
                   return (
                     <Fragment key={application._id}>
-                      <tr
-                        className={styles.row}
-                        onClick={() => toggleExpanded(application._id)}
-                      >
+                      <tr className={styles.row}>
                         <td className={styles.toggleCell}>
-                          <span
-                            className={`${styles.chevron} ${
-                              isExpanded ? styles.chevronOpen : ""
-                            }`}
+                          {/* A real button rather than a click handler on the <tr>:
+                              the row gave keyboard users no way into this panel, and
+                              it is the only place notes, deadlines, interview dates
+                              and the whole contacts UI live. */}
+                          <button
+                            type="button"
+                            className={styles.toggleButton}
+                            onClick={() => toggleExpanded(application._id)}
+                            aria-expanded={isExpanded}
+                            aria-controls={isExpanded ? detailsId : undefined}
+                            aria-label={detailsLabel}
                           >
-                            ▶
-                          </span>
+                            <span
+                              className={`${styles.chevron} ${
+                                isExpanded ? styles.chevronOpen : ""
+                              }`}
+                              aria-hidden="true"
+                            >
+                              ▶
+                            </span>
+                          </button>
                         </td>
                         <td>{application.schoolName}</td>
                         <td>
                           <Link
                             to={`/${application.programId}`}
                             className={styles.programLink}
-                            onClick={(e) => e.stopPropagation()}
+                            aria-label={`${application.programName} at ${application.schoolName}`}
                           >
                             {application.programName}
                           </Link>
@@ -136,14 +147,14 @@ const ApplicationsPage = () => {
                           <button
                             type="button"
                             className={styles.editButton}
-                            onClick={(e) => onEditClick(e, application._id)}
+                            onClick={() => handleEditClick(application._id)}
                           >
                             Edit
                           </button>
                           <button
                             type="button"
                             className={styles.deleteButton}
-                            onClick={(e) => onDeleteClick(e, application._id)}
+                            onClick={() => onDeleteClick(application._id)}
                             disabled={deletingId === application._id}
                           >
                             {deletingId === application._id
@@ -153,7 +164,7 @@ const ApplicationsPage = () => {
                         </td>
                       </tr>
                       {isExpanded && (
-                        <tr className={styles.detailRow}>
+                        <tr className={styles.detailRow} id={detailsId}>
                           <td colSpan={5}>
                             <div className={styles.detailPanel}>
                               <div className={styles.detailField}>

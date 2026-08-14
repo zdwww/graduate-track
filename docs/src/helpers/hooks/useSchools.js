@@ -1,12 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { getAllSchools } from "../apis/schools.js";
 import { createApplication, getAllApplications } from "../apis/applications.js";
 
 const PAGE_SIZE = 15;
 
 const useSchools = () => {
-  const navigate = useNavigate();
   const [schools, setSchools] = useState([]);
   const [appliedProgramIds, setAppliedProgramIds] = useState(new Set());
   const [loading, setLoading] = useState(true);
@@ -51,12 +49,7 @@ const useSchools = () => {
     };
   }, []);
 
-  const handleRowClick = (programId) => {
-    navigate(`/${programId}`);
-  };
-
-  const onClickCreateApplication = async (e, program) => {
-    e.stopPropagation();
+  const onClickCreateApplication = async (program) => {
     if (appliedProgramIds.has(program.programId)) {
       return;
     }
@@ -163,7 +156,6 @@ const useSchools = () => {
     programNameFilter,
     degreeFilter,
     degreeOptions,
-    handleRowClick,
     onClickCreateApplication,
     creatingProgramId,
     setSchoolNameFilter: updateSchoolNameFilter,

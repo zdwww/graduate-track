@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import styles from "./index.module.css";
 
 import Loading from "../../components/Loading/index.jsx";
@@ -16,7 +18,6 @@ const SchoolsPage = () => {
     programNameFilter,
     degreeFilter,
     degreeOptions,
-    handleRowClick,
     onClickCreateApplication,
     creatingProgramId,
     setSchoolNameFilter,
@@ -81,23 +82,34 @@ const SchoolsPage = () => {
                     <th>School</th>
                     <th>Program</th>
                     <th>Degree</th>
-                    <th></th>
+                    <th>
+                      <span className={styles.srOnly}>Actions</span>
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
                   {rows.map((row) => (
-                    <tr
-                      key={row.programId}
-                      onClick={() => handleRowClick(row.programId)}
-                    >
+                    <tr key={row.programId}>
                       <td>{row.schoolName}</td>
-                      <td>{row.programName}</td>
+                      <td>
+                        {/* The program name carries the navigation, not the row:
+                            a <tr onClick> is unreachable by keyboard and leaves the
+                            detail page mouse-only. The label repeats the school so
+                            the link still makes sense out of table context. */}
+                        <Link
+                          to={`/${row.programId}`}
+                          className={styles.programLink}
+                          aria-label={`${row.programName} at ${row.schoolName}`}
+                        >
+                          {row.programName}
+                        </Link>
+                      </td>
                       <td>{row.degree}</td>
                       <td>
                         <button
                           type="button"
                           className={styles.createButton}
-                          onClick={(e) => onClickCreateApplication(e, row)}
+                          onClick={() => onClickCreateApplication(row)}
                           disabled={
                             row.hasApplication ||
                             creatingProgramId === row.programId
