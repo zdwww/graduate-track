@@ -14,6 +14,7 @@
 }
 
 .title {
+  font-family: var(--heading);
   font-size: 40px;
 }
 
@@ -30,19 +31,41 @@
 }
 
 .input {
-  height: 28px;
   font-size: 16px;
-  padding: 4px 8px;
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text-h);
+  box-sizing: border-box;
+}
+
+.input:focus {
+  border-color: var(--accent-border);
 }
 
 .formMargin {
   margin-top: 20px;
 }
 
+/* The primary action of the page, so it uses the same filled treatment as the
+   landing page's "Create an account" rather than the bare native button it was. */
 .button {
   width: 100%;
   margin-top: 30px;
-  height: 40px;
+  padding: 11px 22px;
+  font-size: 15px;
+  font-weight: 600;
+  border: 1px solid var(--accent-solid);
+  border-radius: 8px;
+  background: var(--accent-solid);
+  color: var(--on-accent-solid);
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.button:hover:not(:disabled) {
+  opacity: 0.9;
 }
 
 .button:disabled {
@@ -57,8 +80,16 @@
   text-align: center;
 }
 
+/* Was falling through to the UA default link blue (#0000EE), which is the one colour
+   on the page that ignored the theme switch entirely. */
 .signup {
   padding-top: 20px;
   align-self: flex-end;
+  font-size: 14px;
+  color: var(--accent-text);
   text-decoration: none;
+}
+
+.signup:hover {
+  text-decoration: underline;
 }
