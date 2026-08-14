@@ -39,7 +39,7 @@ const SchoolPage = () => {
     <div className={styles.wrapper}>
       <div className={styles.container}>
         <Link to={routerPaths.schools} className={styles.backLink}>
-          ← Back to Programs
+          ← Back to Browse Programs
         </Link>
 
         <h1 className={styles.title}>{program.programName}</h1>

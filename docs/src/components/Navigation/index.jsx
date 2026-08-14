@@ -18,14 +18,16 @@ const Navigation = () => {
 
   const handleLogout = () => {
     logout();
-    navigate(routerPaths.login);
+    // The landing page, not the login form: signing out should leave you somewhere
+    // that explains the app, the same as any other visitor arriving at "/".
+    navigate(routerPaths.home);
   };
 
   return (
     <nav className={styles.nav}>
       <div className={styles.container}>
-        <Link to={routerPaths.schools} className={styles.brand}>
-          Graduate Track
+        <Link to={routerPaths.home} className={styles.brand}>
+          GraduateTrack
         </Link>
         <div className={styles.links}>
           {isAuthenticated ? (
