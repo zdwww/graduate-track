@@ -9,6 +9,7 @@ A graduate school application tracker that helps applicants browse programs, tra
 - **Live demo:** https://zdwww.github.io/graduate-track/
 - [**Design Doc**](./DESIGNDOC.md)
 
+![landing](./public/images/landing.png)
 ![login](./public/images/login.png)
 ![signup](./public/images/signup.png)
 ![schools](./public/images/schools.png)
@@ -19,13 +20,14 @@ A graduate school application tracker that helps applicants browse programs, tra
 ## Features
 
 - Sign up and log in with an email/password account; JWT-based authentication protects all data
-- Browse a paginated catalog of schools and programs, filterable by school name
+- Browse a paginated catalog of schools and programs, filterable by school name, program name, and degree
 - View a program's detail page with degree, field, external links, and deadlines
 - Add a program to your applications with one click ("+ Add") from the catalog
 - Track each application's status (Draft, Applied, Offered, Rejected), notes, and interview dates
 - Edit an application's status, notes, and interview dates from a dedicated edit form
 - Delete applications you no longer want to track
 - Add, edit, and delete contacts (name, school, role, email, notes) linked to a specific application
+- Select Color mode
 
 **Application statuses:** Draft, Applied, In Progress, Offered, Rejected
 
@@ -128,7 +130,7 @@ Set these in `backend/.env` (see `backend/.env.sample`):
 Once the app is running locally (or on the [live demo](https://zdwww.github.io/graduate-track/)):
 
 1. **Sign up / log in** — create an account on the Signup page or log in on the Login page. A JWT is stored client-side and attached to all subsequent API requests.
-2. **Browse schools** — the home page lists programs from the school catalog. Filter by school name and page through results.
+2. **Browse schools** — the home page lists programs from the school catalog. Filter by school name, program name, and/or degree, then page through results.
 3. **View a program** — click a row to see its detail page: degree, field, external links, and deadlines.
 4. **Add an application** — click **+ Add** on a program row to start tracking it; the button becomes disabled once the program has been added.
 5. **Manage applications** — the Applications page lists everything you're tracking. Click a row to expand it and see the application date, notes, interview dates, and contacts.
