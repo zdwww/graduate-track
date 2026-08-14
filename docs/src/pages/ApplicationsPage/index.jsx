@@ -69,7 +69,7 @@ const ApplicationsPage = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
-        <h1 className={styles.title}>Applications</h1>
+        <h1 className={styles.title}>My Applications</h1>
         <label htmlFor="statusFilter" className={styles.filterLabel}>
           Filter by status
         </label>

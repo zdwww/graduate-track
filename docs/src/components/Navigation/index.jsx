@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 
 import styles from "./index.module.css";
 import ThemeToggle from "../ThemeToggle";
@@ -18,21 +18,25 @@ const Navigation = () => {
 
   const handleLogout = () => {
     logout();
-    navigate(routerPaths.login);
+    // The landing page, not the login form: signing out should leave you somewhere
+    // that explains the app, the same as any other visitor arriving at "/".
+    navigate(routerPaths.home);
   };
 
   return (
     <nav className={styles.nav}>
       <div className={styles.container}>
-        <span className={styles.brand}>Graduate Track</span>
+        <Link to={routerPaths.home} className={styles.brand}>
+          GraduateTrack
+        </Link>
         <div className={styles.links}>
           {isAuthenticated ? (
             <>
               <NavLink to={routerPaths.schools} className={linkClassName} end>
-                Schools
+                Browse Programs
               </NavLink>
               <NavLink to={routerPaths.applications} className={linkClassName}>
-                Applications
+                My Applications
               </NavLink>
               <button
                 type="button"
@@ -45,10 +49,10 @@ const Navigation = () => {
           ) : (
             <>
               <NavLink to={routerPaths.login} className={linkClassName}>
-                Login
+                Log in
               </NavLink>
               <NavLink to={routerPaths.signup} className={linkClassName}>
-                Signup
+                Sign up
               </NavLink>
             </>
           )}

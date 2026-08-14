@@ -13,7 +13,11 @@ const PrivateRoute = ({ component }) => {
   if (isAuthenticated) {
     return component;
   } else {
-    return <Navigate to={routerPaths.login} />;
+    // Home, not the login form. Signing out re-renders the page you were on before
+    // the logout handler's own navigate lands, so this redirect is what actually
+    // decides where you end up — and it should agree with it. It also means a
+    // stranger following a deep link gets the page that explains the app.
+    return <Navigate to={routerPaths.home} replace />;
   }
 };
 
