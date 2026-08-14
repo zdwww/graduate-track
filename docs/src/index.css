@@ -27,8 +27,14 @@
   --shadow:
     rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
 
-  --sans: system-ui, "Segoe UI", Roboto, sans-serif;
-  --heading: system-ui, "Segoe UI", Roboto, sans-serif;
+  /* Serif headings over a humanist sans body, the pairing from the approved proposal
+     mockup. That mockup named Georgia and Avenir Next, which are system faces — they
+     degrade to the browser default on machines that lack them, which is the thing this
+     is meant to move away from. Both families below are self-hosted variable fonts, so
+     every visitor sees the intended pairing. Georgia stays as the heading fallback
+     because it is what the design was drawn against. */
+  --sans: "Inter Variable", system-ui, "Segoe UI", Roboto, sans-serif;
+  --heading: "Source Serif 4 Variable", Georgia, "Times New Roman", serif;
   --mono: ui-monospace, Consolas, monospace;
 
   font: 18px/145% var(--sans);
@@ -70,6 +76,18 @@
 body {
   margin: 0;
   padding: 0;
+}
+
+/* Native form controls do not inherit font-family from their parent — every input,
+   select, textarea and button in the app was rendering in the UA default (Arial),
+   so the body face above would never have reached a single one of them. Only the
+   family is inherited, not the `font` shorthand, so no control's size, weight or
+   line-height moves and nothing reflows. */
+input,
+select,
+textarea,
+button {
+  font-family: inherit;
 }
 
 /* One focus ring for the whole app. Defined globally rather than per component so a
