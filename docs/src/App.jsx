@@ -3,6 +3,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import PublicRoute from "./components/PublicRoutes";
 import PrivateRoute from "./components/PrivateRoutes";
+import HomeRoute from "./components/HomeRoutes";
+import LandingPage from "./pages/LandingPage";
 import Navigation from "./components/Navigation";
 import SignupPage from "./pages/SignupPage";
 import SchoolsPage from "./pages/SchoolsPage";
@@ -32,7 +34,12 @@ function App() {
               />
               <Route
                 path={routerPaths.schools}
-                element={<PrivateRoute component={<SchoolsPage />} />}
+                element={
+                  <HomeRoute
+                    publicComponent={<LandingPage />}
+                    privateComponent={<SchoolsPage />}
+                  />
+                }
               />
               <Route
                 path={routerPaths.school}
