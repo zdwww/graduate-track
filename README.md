@@ -27,7 +27,7 @@ A graduate school application tracker that helps applicants browse programs, tra
 - Delete applications you no longer want to track
 - Add, edit, and delete contacts (name, school, role, email, notes) linked to a specific application
 
-**Application statuses:** Draft, Applied, Offered, Rejected
+**Application statuses:** Draft, Applied, In Progress, Offered, Rejected
 
 ## Tech Stack
 
