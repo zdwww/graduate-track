@@ -1,1 +1,14 @@
 node_modules
+
+# Local secrets — never commit. Use backend/.env.sample as the template.
+.env
+.env.*
+!.env.sample
+
+# Local-only Vite overrides (docs/.env.local)
+*.local
+
+# Personal devlog / scratch notes — never pushed
+DEVLOG.local.md
+
+.DS_Store

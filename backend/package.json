@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "node --watch index.js",
+    "dev": "node --env-file-if-exists=.env --watch index.js",
     "seed": "node seed.js",
+    "seed:local": "node --env-file-if-exists=.env seed.js",
+    "seed:catalog": "node --env-file-if-exists=.env seedCatalog.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
