@@ -1,7 +1,7 @@
 {
-  "name": "project3",
+  "name": "graduate-track",
   "version": "1.0.0",
-  "description": "This is an assignment for project3 of CS5610",
+  "description": "A graduate school application tracker: browse programs, track application status, deadlines and interviews, and keep networking contacts alongside the application they belong to.",
   "homepage": "https://github.com/zdwww/graduate-track#readme",
   "bugs": {
     "url": "https://github.com/zdwww/graduate-track/issues"

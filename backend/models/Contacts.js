@@ -2,7 +2,7 @@ import { ObjectId } from "mongodb";
 
 import { getDB } from "../db.js";
 
-export function getContactsCollection() {
+function getContactsCollection() {
   return getDB().collection("contacts");
 }
 
