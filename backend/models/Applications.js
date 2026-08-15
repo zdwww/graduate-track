@@ -3,7 +3,7 @@ import { ObjectId } from "mongodb";
 import { APPLICATION_STATUS } from "../constants/applications.js";
 import { getDB } from "../db.js";
 
-export function getApplicationsCollection() {
+function getApplicationsCollection() {
   return getDB().collection("applications");
 }
 
