@@ -3,11 +3,10 @@ import { getSchoolsCollection } from "../models/Schools.js";
 export const getAllSchools = async (req, res) => {
   try {
     const collection = getSchoolsCollection();
-    const [data, total] = await Promise.all([collection.find().toArray()]);
+    const [catalog] = await collection.find().toArray();
 
     return res.status(200).json({
-      schools: data[0].schools,
-      total,
+      schools: catalog?.schools ?? [],
     });
   } catch (e) {
     return res.status(400).json({ error: e.message });
