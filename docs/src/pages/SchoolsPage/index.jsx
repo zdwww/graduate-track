@@ -40,14 +40,22 @@ const SchoolsPage = () => {
       <div className={styles.container}>
         <h1 className={styles.title}>Browse Programs</h1>
         <div className={styles.filterRow}>
+          <label htmlFor="schoolNameFilter" className={styles.filterLabel}>
+            Filter by school name
+          </label>
           <input
+            id="schoolNameFilter"
             type="text"
             className={styles.filterInput}
             placeholder="Filter by school name..."
             value={schoolNameFilter}
             onChange={(e) => setSchoolNameFilter(e.target.value)}
           />
+          <label htmlFor="programNameFilter" className={styles.filterLabel}>
+            Filter by program name
+          </label>
           <input
+            id="programNameFilter"
             type="text"
             className={styles.filterInput}
             placeholder="Filter by program name..."
